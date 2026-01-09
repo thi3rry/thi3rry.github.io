@@ -1,0 +1,19 @@
+{{ with .Site.GetPage (.Get "path") }}
+    <div class="post-content {{ if .Params.framed -}}framed{{- end -}}">
+        <h2 class="post-title">{{ .Title }}</h2>
+        {{ if .Params.showFullContent }}
+        {{ .Content }}
+        {{ else if .Description }}
+        <p>{{ .Description | markdownify }}</p>
+        {{ else }}
+        {{ .Summary }}
+        {{ end }}
+        {{ if not .Params.showFullContent }}
+        <div>
+            <a class="read-more button inline" href="{{ .RelPermalink }}">[{{ $.Site.Params.ReadMore }}]</a>
+        </div>
+        {{ end }}
+    </div>
+
+{{ end }}
+

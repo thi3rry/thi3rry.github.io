@@ -1,0 +1,19 @@
+:root {
+  --background: #153489;
+  --foreground: #ffffff;
+  --accent: #5ea5ee;
+}
+
+
+body {
+  font-family: "JetBrains Mono", "Fira Code", Monaco, Consolas, "Ubuntu Mono", monospace;
+}
+
+pre {
+  font-variant-ligatures: none;
+}
+
+
+ul.menu__dropdown, ul.menu__dropdown * {
+  word-break: initial;
+}
