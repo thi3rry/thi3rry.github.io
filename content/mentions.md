@@ -17,5 +17,5 @@ Responsable du contenu : Thierry Poinot
 ## Développement
 
 Responsable du développement : Thierry Poinot
-Développer avec [Hugo](https://gohugo.io)</a> (v0.88.1)
+Développer avec [Hugo](https://gohugo.io)</a>
 Thème [Terminal](https://panr.github.io/hugo-theme-terminal-demo/) par [Radek Kozieł](https://rkoziel.com/)

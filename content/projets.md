@@ -32,3 +32,13 @@ Nous  développons des sites internet et des applications mobiles en utilisant d
 
 Nous sommes expert en PHP, HTML, CSS et Javascript.
 Nous utilisons principalement le CMS Drupal et le framework Symfony.
+
+
+## Développements web
+
+### Accordeur de guitare (Vibe GPT) - 30/12/2025
+
+Marre des applications natives qui demandait des comptes, des trackers, cookies. Une simple webapp utilisant l'API web [AudioContext](https://developer.mozilla.org/fr/docs/Web/API/AudioContext)
+
+- Sources : https://github.com/thi3rry/accordeur
+- Demo : https://thi3rry.github.io/accordeur/

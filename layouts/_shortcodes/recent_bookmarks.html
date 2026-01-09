@@ -1,0 +1,11 @@
+<ul class="recent-bookmarks">
+    {{ range first 9 (where .Site.RegularPages "Section" "bookmarks").ByDate.Reverse }}
+    <li>
+        <strong><a href="{{ .RelPermalink }}">{{ .Title }}</a></strong>
+        {{ if .Date }}<small>({{ .Date.Format "02/01/2006" }})</small>{{ end }}
+        <div class="bookmark-excerpt">
+            {{ .Summary | plainify | truncate 150 }}
+        </div>
+    </li>
+    {{ end }}
+</ul>
