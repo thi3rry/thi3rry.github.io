@@ -37,6 +37,12 @@ Nous utilisons principalement le CMS Drupal et le framework Symfony.
 
 ## Développements web
 
+### BKM Manager - 11/01/2026
+
+Application de gestion d'adhérent à partir de CSV.
+
+- Demo : https://thi3rry.github.io/bkm-manager/
+
 ### Accordeur de guitare (Vibe GPT) - 30/12/2025
 
 Marre des applications natives qui demandait des comptes, des trackers, cookies. Une simple webapp utilisant l'API web [AudioContext](https://developer.mozilla.org/fr/docs/Web/API/AudioContext)
