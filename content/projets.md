@@ -1,8 +1,9 @@
 +++
 date = '2026-01-09T09:19:51+01:00'
-title = 'Projets'
+title = 'Mes projets'
 menu = 'main'
 weight = 40
+tags = ['secourisme', 'krav-maga', 'pompiers', 'self-defense', 'web-development']
 +++
 
 # Projets

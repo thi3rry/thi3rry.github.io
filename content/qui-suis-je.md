@@ -3,6 +3,7 @@ framed: true
 weight: 10
 menu: main
 title: Qui suis-je ?
+toc: true
 ---
 
 
@@ -43,10 +44,14 @@ Contactez-moi à thierry #at# shoot-shoot.com
    - Protection des personnes, des biens et de l'environnement
 - mars 2024 : Diplôme d'instructeur Fédéral de Krav-Maga
    - Obtention du Diplôme d’Instructeur Fédéral au sein de la Fédération Européenne de Krav Maga (FEKM)
-- janvier 2023 : Formation Docker intensif
+- janvier 2023 : Formation Docker intensif & Fondamentaux Kubernetes
    - Enix - 5 jours
+   - Approfondissement des notions techniques déjà apprise et expérimentations.
+     Découverte de Kubernetes
 - janvier 2021 : PSC1 - Formation Premiers Secours Citoyens niveau 1
    - Protection Civile
+- avril 2019 : Formation Vue.js
+  - Human Coders - 3 jours
 - 2009 - 2010 : Licence Professionnelle Systèmes Informatiques et Logiciels option Assistant Chef de Projet Informatique
    - IUT Bordeaux 1
    - La licence professionnelle Systèmes Informatiques et Logiciels option Assistant Chef de Projet Informatique m’a permis de découvrir les bases de la gestions de projet avancées et la programmation en language de bas niveau (C / C++)

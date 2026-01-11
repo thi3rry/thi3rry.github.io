@@ -2,6 +2,7 @@
 date = '2026-01-09T08:44:47+01:00'
 title = 'Mentions légales'
 menu = 'footer'
+toc = true
 +++
 
 # Mentions légales
