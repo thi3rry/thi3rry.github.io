@@ -1,0 +1,47 @@
+<IfModule mod_rewrite.c>
+  # Activer le module de réécriture
+  RewriteEngine On
+
+  # Définir la base pour les réécritures
+  RewriteBase /
+
+  # Si la requête n'est pas un fichier existant
+  RewriteCond %{REQUEST_FILENAME} !-f
+
+  # Et si la requête n'est pas un répertoire existant
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Alors rediriger vers index.html
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Configuration de la mise en cache pour les performances
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # CSS et JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+
+  # HTML (ne pas mettre en cache pour toujours avoir la dernière version)
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Compression gzip pour améliorer les performances
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
