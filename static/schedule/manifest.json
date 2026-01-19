@@ -1,0 +1,27 @@
+{
+  "name": "Daily Schedule - Planning Journalier",
+  "short_name": "Daily Schedule",
+  "description": "Application de planning journalier personnalisable avec modes multiples",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#2563eb",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Mode Print",
+      "short_name": "Print",
+      "description": "Ouvrir en mode impression",
+      "url": "/?mode=print"
+    }
+  ]
+}
