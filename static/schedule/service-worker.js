@@ -1,4 +1,4 @@
-const APP_VERSION = '1.5.1'; // Version de l'application
+const APP_VERSION = '1.5.2'; // Version de l'application
 const CACHE_NAME = 'daily-schedule-v4'; // Incrémenter pour forcer une mise à jour
 const PENDING_CACHE_NAME = 'daily-schedule-pending-v4';
 const urlsToCache = [
