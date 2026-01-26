@@ -9,6 +9,7 @@ weight = 30
 - [Podcast Tech Café](https://techcafe.fr/)
 - [Korben](https://korben.info/)
 - [Kevin GAUTREAU](https://kgaut.net/blog/)
+- https://12factor.net/fr/
 
 ## Liens regrettés
 
