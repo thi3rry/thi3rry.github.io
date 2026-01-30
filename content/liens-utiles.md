@@ -10,6 +10,7 @@ weight = 30
 - [Korben](https://korben.info/)
 - [Kevin GAUTREAU](https://kgaut.net/blog/)
 - https://12factor.net/fr/
+- [Formation DevOps Stéphane Robert](https://blog.stephane-robert.info/docs/devops)
 
 ## Liens regrettés
 
