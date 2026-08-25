@@ -37,3 +37,4 @@ puis un petit `brew install ddev/ddev/ddev` et la machine est prête à coder/te
 - [localtls](https://github.com/Corollarium/localtls): A DNS server in Python3 to provide TLS to webservices on local addresses. It resolves addresses such as '192-168-0-1.yourdomain.net' to 192.168.0.1 and has a valid TLS certificate for them.
 - [shpod kub container](https://github.com/jpetazzo/shpod) : `shpod` is a container image based on the Alpine distribution and embarking a bunch of tools useful when working with containers, Docker, and Kubernetes.
   docker run -it jpetazzo/shpod		
+- [Outil de révision des manoeuvres incendie](https://thi3rry.github.io/spv/incendie-manoeuvre-binomes.html)
