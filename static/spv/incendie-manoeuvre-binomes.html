@@ -1,181 +1,186 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Manœuvres binômes — Équipier incendie</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#EDF0F3;
-    --card:#FFFFFF;
-    --ink:#161B22;
-    --muted:#5C6672;
-    --line:#D3D9E0;
-    --prep:#1E4FA3;      /* ordre préparatoire */
-    --prep-soft:#E7EEFB;
-    --exec:#C8102E;      /* ordre exécutoire */
-    --exec-soft:#FBE7EA;
-    --ce:#0F7B6C;
-    --eq:#B25A00;
-    --hose45:#E8632B;
-    --hose70:#F2C400;
-    --steel:#33404D;
-    --radius:10px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;line-height:1.35}
-  h1,h2,h3,.disp{font-family:"Barlow Condensed","Barlow",sans-serif}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manœuvres binômes — Équipier incendie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#EDF0F3;
+      --card:#FFFFFF;
+      --ink:#161B22;
+      --muted:#5C6672;
+      --line:#D3D9E0;
+      --prep:#1E4FA3;      /* ordre préparatoire */
+      --prep-soft:#E7EEFB;
+      --exec:#C8102E;      /* ordre exécutoire */
+      --exec-soft:#FBE7EA;
+      --ce:#0F7B6C;
+      --eq:#B25A00;
+      --hose45:#E8632B;
+      --hose70:#F2C400;
+      --steel:#33404D;
+      --radius:10px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;line-height:1.35}
+    h1,h2,h3,.disp{font-family:"Barlow Condensed","Barlow",sans-serif}
 
-  header{padding:28px 32px 18px;display:flex;flex-wrap:wrap;gap:18px 32px;align-items:flex-end;border-bottom:3px solid var(--exec);background:var(--card)}
-  h1{margin:0;font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:.5px;text-transform:uppercase;line-height:.95}
-  h1 small{display:block;font-size:.34em;font-weight:500;letter-spacing:3px;color:var(--muted);margin-top:6px}
-  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px;align-items:center;margin-left:auto}
-  .tag{display:inline-block;padding:3px 10px;border-radius:4px;font-weight:600;font-size:12.5px;letter-spacing:.4px;text-transform:uppercase}
-  .tag.prep{background:var(--prep);color:#fff}
-  .tag.exec{background:var(--exec);color:#fff}
-  .tag.ce{background:var(--ce);color:#fff}
-  .tag.eq{background:var(--eq);color:#fff}
-  .tag.outline{background:transparent;border:1.5px solid currentColor}
+    header{padding:28px 32px 18px;display:flex;flex-wrap:wrap;gap:18px 32px;align-items:flex-end;border-bottom:3px solid var(--exec);background:var(--card)}
+    h1{margin:0;font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:.5px;text-transform:uppercase;line-height:.95}
+    h1 small{display:block;font-size:.34em;font-weight:500;letter-spacing:3px;color:var(--muted);margin-top:6px}
+    .legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px;align-items:center;margin-left:auto}
+    .tag{display:inline-block;padding:3px 10px;border-radius:4px;font-weight:600;font-size:12.5px;letter-spacing:.4px;text-transform:uppercase}
+    .tag.prep{background:var(--prep);color:#fff}
+    .tag.exec{background:var(--exec);color:#fff}
+    .tag.ce{background:var(--ce);color:#fff}
+    .tag.eq{background:var(--eq);color:#fff}
+    .tag.outline{background:transparent;border:1.5px solid currentColor}
 
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:14px 32px;align-items:center;font-size:14px}
-  .toolbar button{font:inherit;font-weight:600;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink)}
-  .toolbar button:hover{border-color:var(--steel)}
-  .toolbar button[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:#fff}
-  .toolbar .spacer{flex:1}
-  .toolbar label{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:14px 32px;align-items:center;font-size:14px}
+    .toolbar button{font:inherit;font-weight:600;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink)}
+    .toolbar button:hover{border-color:var(--steel)}
+    .toolbar button[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:#fff}
+    .toolbar .spacer{flex:1}
+    .toolbar label{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
 
-  /* phases */
-  .phases{display:grid;grid-template-columns:1fr 1fr 1.45fr;gap:0;padding:0 32px 48px;position:relative}
-  .phase{padding:18px 20px 0;position:relative;min-width:0}
-  .phase + .phase{border-left:2px dashed var(--steel)}
-  .phase-head{position:sticky;top:0;background:var(--bg);z-index:2;padding:8px 0 12px;border-bottom:2px solid var(--steel);margin-bottom:14px}
-  .phase-head .num{font-family:"Barlow Condensed";font-size:64px;font-weight:800;line-height:.8;color:var(--exec);display:block}
-  .phase-head h2{margin:8px 0 0;font-size:24px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-  .phase-head p{margin:4px 0 0;color:var(--muted);font-size:13.5px}
+    /* phases */
+    .phases{display:grid;grid-template-columns:1fr 1fr 1.45fr;gap:0;padding:0 32px 48px;position:relative}
+    .phase{padding:18px 20px 0;position:relative;min-width:0}
+    .phase + .phase{border-left:2px dashed var(--steel)}
+    .phase-head{position:sticky;top:0;background:var(--bg);z-index:2;padding:8px 0 12px;border-bottom:2px solid var(--steel);margin-bottom:14px}
+    .phase-head .num{font-family:"Barlow Condensed";font-size:64px;font-weight:800;line-height:.8;color:var(--exec);display:block}
+    .phase-head h2{margin:8px 0 0;font-size:24px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+    .phase-head p{margin:4px 0 0;color:var(--muted);font-size:13.5px}
 
-  /* cards */
-  .card{background:var(--card);border-radius:var(--radius);border:1px solid var(--line);margin-bottom:14px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.03)}
-  .card[hidden]{display:none}
-  .card summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
-  .card summary::-webkit-details-marker{display:none}
-  .card summary:focus-visible{outline:3px solid var(--prep);outline-offset:-3px}
-  .who{font-family:"Barlow Condensed";font-weight:800;font-size:22px;padding:4px 10px;border:2px solid var(--ink);border-radius:4px;letter-spacing:1px;white-space:nowrap}
-  .who.ca{border-color:var(--exec);color:var(--exec)}
-  .title{font-family:"Barlow Condensed";font-size:20px;font-weight:700;line-height:1.1}
-  .title span{display:block;font-family:"Barlow";font-weight:500;font-size:13px;color:var(--muted);margin-top:3px}
-  .chev{width:22px;height:22px;transition:transform .2s}
-  details[open] .chev{transform:rotate(180deg)}
-  @media (prefers-reduced-motion:reduce){.chev{transition:none}}
-  .body{padding:0 16px 16px;border-top:1px solid var(--line)}
+    /* cards */
+    .card{background:var(--card);border-radius:var(--radius);border:1px solid var(--line);margin-bottom:14px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+    .card[hidden]{display:none}
+    .card summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+    .card summary::-webkit-details-marker{display:none}
+    .card summary:focus-visible{outline:3px solid var(--prep);outline-offset:-3px}
+    .who{font-family:"Barlow Condensed";font-weight:800;font-size:22px;padding:4px 10px;border:2px solid var(--ink);border-radius:4px;letter-spacing:1px;white-space:nowrap}
+    .who.ca{border-color:var(--exec);color:var(--exec)}
+    .title{font-family:"Barlow Condensed";font-size:20px;font-weight:700;line-height:1.1}
+    .title span{display:block;font-family:"Barlow";font-weight:500;font-size:13px;color:var(--muted);margin-top:3px}
+    .chev{width:22px;height:22px;transition:transform .2s}
+    details[open] .chev{transform:rotate(180deg)}
+    @media (prefers-reduced-motion:reduce){.chev{transition:none}}
+    .body{padding:0 16px 16px;border-top:1px solid var(--line)}
 
-  .orders{display:grid;gap:8px;margin:14px 0}
-  .order{border-left:5px solid;padding:9px 12px;border-radius:0 6px 6px 0;font-size:14.5px}
-  .order.prep{border-color:var(--prep);background:var(--prep-soft);color:var(--prep)}
-  .order.exec{border-color:var(--exec);background:var(--exec-soft);color:var(--exec)}
-  .order b{font-weight:600}
-  .order .lbl{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-bottom:2px;font-weight:600}
-  .order .or{display:block;text-align:center;font-weight:700;font-size:12px;letter-spacing:2px;margin:6px 0}
+    .orders{display:grid;gap:8px;margin:14px 0}
+    .order{border-left:5px solid;padding:9px 12px;border-radius:0 6px 6px 0;font-size:14.5px}
+    .order.prep{border-color:var(--prep);background:var(--prep-soft);color:var(--prep)}
+    .order.exec{border-color:var(--exec);background:var(--exec-soft);color:var(--exec)}
+    .order b{font-weight:600}
+    .order .lbl{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-bottom:2px;font-weight:600}
+    .order .or{display:block;text-align:center;font-weight:700;font-size:12px;letter-spacing:2px;margin:6px 0}
 
-  .kit{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:13px;color:var(--muted);padding:10px 12px;background:var(--bg);border-radius:6px;margin:10px 0}
-  .kit .k{display:flex;align-items:center;gap:6px}
-  .kit svg{height:22px;width:auto;display:block}
-  .kit .role{font-weight:700;color:var(--ink);font-family:"Barlow Condensed";font-size:15px;letter-spacing:1px}
+    .kit{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:13px;color:var(--muted);padding:10px 12px;background:var(--bg);border-radius:6px;margin:10px 0}
+    .kit .k{display:flex;align-items:center;gap:6px}
+    .kit svg{height:22px;width:auto;display:block}
+    .kit .role{font-weight:700;color:var(--ink);font-family:"Barlow Condensed";font-size:15px;letter-spacing:1px}
 
-  .steps{list-style:none;margin:8px 0 0;padding:0;font-size:14.5px}
-  .steps li{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:5px 0;border-bottom:1px dashed var(--line);align-items:start}
-  .steps li:last-child{border-bottom:0}
-  .steps .r{font-family:"Barlow Condensed";font-weight:800;font-size:14px;letter-spacing:1px;padding:2px 6px;border-radius:3px;text-align:center;color:#fff;margin-top:2px}
-  .steps .r.ce{background:var(--ce)} .steps .r.eq{background:var(--eq)} .steps .r.bat,.steps .r.bal{background:var(--steel)}
-  .steps .r.co{background:#666}
-  .steps u{text-decoration-thickness:2px;text-underline-offset:2px}
-  .steps .opt{margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:6px;font-size:13.5px}
-  .steps .opt li{border-bottom-color:#c9d0d8}
-  .opt-title{font-weight:600;color:var(--prep);text-transform:uppercase;letter-spacing:1px;font-size:12px;margin-bottom:4px}
-  .cond{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
-  .hose{height:22px;width:auto;display:inline-block;vertical-align:middle;margin-right:2px}
-  .hose.rouge{--band:var(--exec)} .hose.jaune{--band:var(--hose70)} .hose.bleu{--band:var(--prep)}
-  .kit svg.hose{width:56px}
-  abbr[title]{text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:3px;cursor:help}
-  .who abbr,.order abbr{text-decoration-color:currentColor}
-  .hose-legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);align-items:center;width:100%;margin-top:4px}
-  .hose-legend span{display:flex;align-items:center;gap:6px}
-  .lexique{padding:20px 32px 40px;background:var(--card);border-top:2px solid var(--steel)}
-  .lexique h2{margin:0 0 10px;font-size:22px;text-transform:uppercase;letter-spacing:1px}
-  .lexique dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px 24px;margin:0;font-size:14px}
-  .lexique dt{display:inline;font-family:"Barlow Condensed";font-weight:800;font-size:17px;letter-spacing:1px}
-  .lexique dd{display:inline;margin:0;color:var(--muted)}
-  .lexique dd::after{content:"";display:block}
+    .steps{list-style:none;margin:8px 0 0;padding:0;font-size:14.5px}
+    .steps li{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:5px 0;border-bottom:1px dashed var(--line);align-items:start}
+    .steps li:last-child{border-bottom:0}
+    .steps .r{font-family:"Barlow Condensed";font-weight:800;font-size:14px;letter-spacing:1px;padding:2px 6px;border-radius:3px;text-align:center;color:#fff;margin-top:2px}
+    .steps .r.ce{background:var(--ce)} .steps .r.eq{background:var(--eq)} .steps .r.bat,.steps .r.bal{background:var(--steel)}
+    .steps .r.co{background:#666}
+    .steps u{text-decoration-thickness:2px;text-underline-offset:2px}
+    .steps .opt{margin-top:10px;padding:10px 12px;background:var(--bg);border-radius:6px;font-size:13.5px}
+    .steps .opt li{border-bottom-color:#c9d0d8}
+    .opt-title{font-weight:600;color:var(--prep);text-transform:uppercase;letter-spacing:1px;font-size:12px;margin-bottom:4px}
+    .cond{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+    .hose{height:22px;width:auto;display:inline-block;vertical-align:middle;margin-right:2px}
+    .hose.rouge{--band:var(--exec)} .hose.jaune{--band:var(--hose70)} .hose.bleu{--band:var(--prep)}
+    .kit svg.hose{width:56px}
+    abbr[title]{text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:3px;cursor:help}
+    .who abbr,.order abbr{text-decoration-color:currentColor}
+    .hose-legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);align-items:center;width:100%;margin-top:4px}
+    .hose-legend span{display:flex;align-items:center;gap:6px}
+    .lexique{padding:20px 32px 40px;background:var(--card);border-top:2px solid var(--steel)}
+    .lexique h2{margin:0 0 10px;font-size:22px;text-transform:uppercase;letter-spacing:1px}
+    .lexique dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px 24px;margin:0;font-size:14px}
+    .lexique dt{display:inline;font-family:"Barlow Condensed";font-weight:800;font-size:17px;letter-spacing:1px}
+    .lexique dd{display:inline;margin:0;color:var(--muted)}
+    .lexique dd::after{content:"";display:block}
 
 
-  /* ---------- Mode révision ---------- */
-  .switch{gap:10px}
-  .switch input{position:absolute;opacity:0;width:0;height:0}
-  .switch .track{width:42px;height:24px;border-radius:12px;background:var(--line);position:relative;transition:background .2s;flex:none}
-  .switch .track::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .2s}
-  .switch input:checked + .track{background:var(--exec)}
-  .switch input:checked + .track::after{transform:translateX(18px)}
-  .switch input:focus-visible + .track{outline:3px solid var(--prep);outline-offset:2px}
-  .quiz{display:none}
-  body.rev .orders,body.rev .kit,body.rev .steps{display:none}
-  body.rev .quiz{display:block}
-  body.rev .toolbar [data-filter]{opacity:1}
-  .quiz h4{margin:16px 0 8px;font-family:"Barlow Condensed";font-size:17px;text-transform:uppercase;letter-spacing:1.5px;color:var(--steel);display:flex;align-items:center;gap:10px}
-  .quiz h4 .score{font-family:"Barlow";font-size:13px;text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted)}
-  .hint{font-size:13px;color:var(--muted);margin:0 0 8px}
-  .palette{display:flex;flex-wrap:wrap;gap:6px}
-  .chip{font:inherit;font-size:13px;font-weight:600;padding:6px 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-align:left}
-  .chip:hover{border-color:var(--steel)}
-  .chip:disabled{opacity:.35;cursor:not-allowed}
-  .chip .hose{height:16px;width:40px}
-  .slots{display:grid;gap:8px;margin:10px 0}
-  .slot{border:2px dashed var(--line);border-radius:8px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:44px;cursor:pointer}
-  .slot.active{border-style:solid;border-color:var(--prep);background:var(--prep-soft)}
-  .slot .role{font-family:"Barlow Condensed";font-weight:800;font-size:16px;letter-spacing:1px;padding:2px 8px;border:2px solid var(--ink);border-radius:4px;margin-right:4px}
-  .slot .empty{font-size:13px;color:var(--muted);font-style:italic}
-  .token{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 6px 4px 10px;border-radius:999px;background:var(--bg);border:1.5px solid var(--line)}
-  .token .hose{height:16px;width:40px}
-  .token button,.seq button{font:inherit;border:0;background:transparent;cursor:pointer;padding:2px 6px;border-radius:4px;color:var(--muted);line-height:1}
-  .token button:hover,.seq button:hover{background:rgba(0,0,0,.08);color:var(--ink)}
-  .ok{background:#DDF5E4 !important;border-color:#1E8E4B !important;color:#0F5A2E}
-  .ko{background:#FBE1E4 !important;border-color:var(--exec) !important;color:#8A0B20}
-  .slot.ko{border-style:solid}
-  .seq{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px}
-  .seq li{display:grid;grid-template-columns:28px auto 1fr auto;gap:8px;align-items:center;padding:6px 8px;border:1.5px solid var(--line);border-radius:8px;background:var(--card);font-size:14px}
-  .seq li .n{font-family:"Barlow Condensed";font-weight:800;color:var(--muted);text-align:right}
-  .seq .ctl{display:flex;gap:2px}
-  .seq .empty{padding:14px;border:2px dashed var(--line);border-radius:8px;text-align:center;color:var(--muted);font-size:13px;grid-template-columns:1fr}
-  .pool{display:grid;gap:6px}
-  .pool .chip{border-radius:8px;width:100%}
-  .r.prep{background:var(--prep)} .r.exec{background:var(--exec)}
-  .line .r,.seq .r{font-family:"Barlow Condensed";font-weight:800;font-size:13px;letter-spacing:1px;padding:2px 6px;border-radius:3px;color:#fff;flex:none}
-  .r.who-q{background:var(--muted)}
-  .rolesel{font:inherit;font-family:"Barlow Condensed";font-weight:800;font-size:14px;letter-spacing:1px;padding:3px 4px;border-radius:4px;border:2px solid var(--steel);background:var(--card);color:var(--ink);cursor:pointer}
-  .rolesel:focus-visible{outline:3px solid var(--prep);outline-offset:1px}
-  .quiz .hint.roles{margin-top:-4px}
-  .quiz .actions{display:flex;gap:8px;margin:10px 0 4px}
-  .btn{font:inherit;font-weight:700;padding:8px 16px;border-radius:8px;border:2px solid var(--steel);background:var(--steel);color:#fff;cursor:pointer}
-  .btn.ghost{background:transparent;color:var(--steel)}
-  .btn:focus-visible{outline:3px solid var(--prep);outline-offset:2px}
-  .verdict{font-weight:600;font-size:14px;margin-top:6px}
-  .verdict.ok,.verdict.ko{background:none !important;border:0 !important}
-  @media (prefers-reduced-motion:reduce){.switch .track,.switch .track::after{transition:none}}
+    /* ---------- Mode révision ---------- */
+    .switch{gap:10px}
+    .switch input{position:absolute;opacity:0;width:0;height:0}
+    .switch .track{width:42px;height:24px;border-radius:12px;background:var(--line);position:relative;transition:background .2s;flex:none}
+    .switch .track::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .2s}
+    .switch input:checked + .track{background:var(--exec)}
+    .switch input:checked + .track::after{transform:translateX(18px)}
+    .switch input:focus-visible + .track{outline:3px solid var(--prep);outline-offset:2px}
+    .quiz{display:none}
+    body.rev .orders,body.rev .kit,body.rev .steps{display:none}
+    body.rev .quiz{display:block}
+    body.rev .toolbar [data-filter]{opacity:1}
+    .quiz h4{margin:16px 0 8px;font-family:"Barlow Condensed";font-size:17px;text-transform:uppercase;letter-spacing:1.5px;color:var(--steel);display:flex;align-items:center;gap:10px}
+    .quiz h4 .score{font-family:"Barlow";font-size:13px;text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted)}
+    .hint{font-size:13px;color:var(--muted);margin:0 0 8px}
+    .palette{display:flex;flex-wrap:wrap;gap:6px}
+    .chip{font:inherit;font-size:13px;font-weight:600;padding:6px 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-align:left}
+    .chip:hover{border-color:var(--steel)}
+    .chip:disabled{opacity:.35;cursor:not-allowed}
+    .chip .hose{height:16px;width:40px}
+    .slots{display:grid;gap:8px;margin:10px 0}
+    .slot{border:2px dashed var(--line);border-radius:8px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:44px;cursor:pointer}
+    .slot.active{border-style:solid;border-color:var(--prep);background:var(--prep-soft)}
+    .slot .role{font-family:"Barlow Condensed";font-weight:800;font-size:16px;letter-spacing:1px;padding:2px 8px;border:2px solid var(--ink);border-radius:4px;margin-right:4px}
+    .slot .empty{font-size:13px;color:var(--muted);font-style:italic}
+    .token{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 6px 4px 10px;border-radius:999px;background:var(--bg);border:1.5px solid var(--line)}
+    .token .hose{height:16px;width:40px}
+    .token button,.seq button{font:inherit;border:0;background:transparent;cursor:pointer;padding:2px 6px;border-radius:4px;color:var(--muted);line-height:1}
+    .token button:hover,.seq button:hover{background:rgba(0,0,0,.08);color:var(--ink)}
+    .ok{background:#DDF5E4 !important;border-color:#1E8E4B !important;color:#0F5A2E}
+    .ko{background:#FBE1E4 !important;border-color:var(--exec) !important;color:#8A0B20}
+    .slot.ko{border-style:solid}
+    .seq{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px}
+    .seq li{display:grid;grid-template-columns:28px auto 1fr auto;gap:8px;align-items:center;padding:6px 8px;border:1.5px solid var(--line);border-radius:8px;background:var(--card);font-size:14px}
+    .seq li .n{font-family:"Barlow Condensed";font-weight:800;color:var(--muted);text-align:right}
+    .seq .ctl{display:flex;gap:2px}
+    .seq .empty{padding:14px;border:2px dashed var(--line);border-radius:8px;text-align:center;color:var(--muted);font-size:13px;grid-template-columns:1fr}
+    .pool{display:grid;gap:6px}
+    .pool .chip{border-radius:8px;width:100%}
+    .r.prep{background:var(--prep)} .r.exec{background:var(--exec)}
+    .line .r,.seq .r{font-family:"Barlow Condensed";font-weight:800;font-size:13px;letter-spacing:1px;padding:2px 6px;border-radius:3px;color:#fff;flex:none}
+    .r.who-q{background:var(--muted)}
+    .rolesel{font:inherit;font-family:"Barlow Condensed";font-weight:800;font-size:14px;letter-spacing:1px;padding:3px 4px;border-radius:4px;border:2px solid var(--steel);background:var(--card);color:var(--ink);cursor:pointer}
+    .rolesel:focus-visible{outline:3px solid var(--prep);outline-offset:1px}
+    .quiz .hint.roles{margin-top:-4px}
+    .title .vbadge,.vbadge{display:inline-block;font-family:"Barlow";font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#7A4B00;background:#FFF1CC;border:1.5px solid #E1A100;border-radius:4px;padding:2px 7px;margin-left:6px;vertical-align:middle}
+    .verify-card{border-color:#E1A100;border-left:5px solid #E1A100}
+    .verify{display:flex;gap:10px;align-items:flex-start;background:#FFF7E0;border:1px solid #F1C860;border-radius:6px;padding:10px 12px;margin:14px 0 0;font-size:13.5px;color:#5A3B00}
+    .verify .vico{font-size:20px;line-height:1;flex:none}
+    .ltxt .or{display:block;text-align:center;font-weight:700;font-size:12px;letter-spacing:2px;margin:4px 0;color:var(--muted)}
+    .quiz .actions{display:flex;gap:8px;margin:10px 0 4px}
+    .btn{font:inherit;font-weight:700;padding:8px 16px;border-radius:8px;border:2px solid var(--steel);background:var(--steel);color:#fff;cursor:pointer}
+    .btn.ghost{background:transparent;color:var(--steel)}
+    .btn:focus-visible{outline:3px solid var(--prep);outline-offset:2px}
+    .verdict{font-weight:600;font-size:14px;margin-top:6px}
+    .verdict.ok,.verdict.ko{background:none !important;border:0 !important}
+    @media (prefers-reduced-motion:reduce){.switch .track,.switch .track::after{transition:none}}
 
-  @media (max-width:1000px){
-    .phases{grid-template-columns:1fr;padding:0 16px 32px}
-    .phase{padding:12px 0 0}
-    .phase + .phase{border-left:0;border-top:2px dashed var(--steel);margin-top:14px}
-    header,.toolbar,.lexique{padding-left:16px;padding-right:16px}
-    .phase-head{position:static}
-  }
-  @media print{
-    .toolbar{display:none}
-    .card summary{cursor:default}
-    body{background:#fff}
-    .phase-head{position:static}
-  }
-</style>
+    @media (max-width:1000px){
+      .phases{grid-template-columns:1fr;padding:0 16px 32px}
+      .phase{padding:12px 0 0}
+      .phase + .phase{border-left:0;border-top:2px dashed var(--steel);margin-top:14px}
+      header,.toolbar,.lexique{padding-left:16px;padding-right:16px}
+      .phase-head{position:static}
+    }
+    @media print{
+      .toolbar{display:none}
+      .card summary{cursor:default}
+      body{background:#fff}
+      .phase-head{position:static}
+    }
+  </style>
 </head>
 <body>
 
@@ -202,11 +207,12 @@
     <span class="tag exec">Ordre exécutoire</span>
     <span class="tag ce">CE · chef d'équipe</span>
     <span class="tag eq">EQ · équipier</span>
+    <span class="vbadge" style="margin:0">⚠ à vérifier = source différente du SDIS</span>
   </div>
   <div class="hose-legend">
-    <span><svg class="hose rouge"><use href="#hoseZ"/></svg> Z · fourreau rouge</span>
-    <span><svg class="hose bleu"><use href="#hoseZ"/></svg> Z · fourreau bleu</span>
-    <span><svg class="hose jaune"><use href="#hoseO"/></svg> O · fourreau jaune</span>
+    <span><svg class="hose rouge"><use href="#hoseZ"/></svg> Z · fourreau rouge — Ø 45 mm · 20 m</span>
+    <span><svg class="hose bleu"><use href="#hoseZ"/></svg> Z · fourreau bleu — Ø 70 mm · 40 m</span>
+    <span><svg class="hose jaune"><use href="#hoseO"/></svg> O · fourreau jaune — Ø 45 mm · 20 m</span>
   </div>
 </header>
 
@@ -224,291 +230,327 @@
 
 <main class="phases">
 
-<!-- ================= PHASE 1 ================= -->
-<section class="phase">
-  <div class="phase-head">
-    <span class="num">1</span>
-    <h2>Alimentation</h2>
-    <p>Le CA fait alimenter l'engin. La distance au PI décide du moyen.</p>
-  </div>
-
-  <details class="card" data-kit='{"CO":["C.AL","Clé de poteau"]}' data-who="co">
-    <summary>
-      <span class="who">CO</span>
-      <span class="title">Caisse d'alimentation sur PI<span class="cond">PI à moins de 20 m</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order exec"><span class="lbl">CA → CO</span>CO, au moyen de la Caisse d'Alim, alimentez l'engin, PE à utiliser le PI… <b>ALIMENTEZ !</b></div>
-      </div>
-      <div class="kit"><span class="k"><span class="role">C.AL</span> caisse d'alimentation</span><span class="k">clé de poteau</span></div>
-      <ul class="steps">
-        <li><span class="r co">CO</span>Place la C.Alim (4 m)</li>
-        <li><span class="r co">CO</span>Connecte le collecteur</li>
-        <li><span class="r co">CO</span>Prend 2 ½ raccords connectés avec clé de poteau (16 m)</li>
-        <li><span class="r co">CO</span>Purge le poteau</li>
-        <li><span class="r co">CO</span>Connecte les 2 ½ raccords et ouvre</li>
-      </ul>
+  <!-- ================= PHASE 1 ================= -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="num">1</span>
+      <h2>Alimentation</h2>
+      <p>Le CA fait alimenter l'engin. La distance au PI décide du moyen.</p>
     </div>
-  </details>
 
-  <details class="card" data-kit='{"BAL":["Dévidoir","DIV 100/2×65","Clé de poteau"]}' data-who="bal">
-    <summary>
-      <span class="who">BAL</span>
-      <span class="title">Dévidoir sur PI<span class="cond">PI à plus de 20 m</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order exec"><span class="lbl">CA → BAL</span>BAL, pour l'alimentation de l'engin au moyen du dévidoir, PE à utiliser le PI… <b>ALIMENTEZ !</b></div>
+    <details class="card" data-kit='{"CO":["C.AL","Clé de poteau"]}' data-who="co">
+      <summary>
+        <span class="who">CO</span>
+        <span class="title">Caisse d'alimentation sur PI<span class="cond">PI à moins de 20 m</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order exec"><span class="lbl">CA → CO</span>CO, au moyen de la Caisse d'Alim, alimentez l'engin, PE à utiliser le PI… <b>ALIMENTEZ !</b></div>
+        </div>
+        <div class="kit"><span class="k"><span class="role">C.AL</span> caisse d'alimentation</span><span class="k">clé de poteau</span></div>
+        <ul class="steps">
+          <li><span class="r co">CO</span>Place la C.Alim (4 m)</li>
+          <li><span class="r co">CO</span>Connecte le collecteur</li>
+          <li><span class="r co">CO</span>Prend 2 ½ raccords connectés avec clé de poteau (16 m)</li>
+          <li><span class="r co">CO</span>Purge le poteau</li>
+          <li><span class="r co">CO</span>Connecte les 2 ½ raccords et ouvre</li>
+        </ul>
       </div>
-      <div class="kit"><span class="k">dévidoir</span><span class="k">DIV 100/2×65</span><span class="k">clé de poteau</span></div>
-      <ul class="steps">
-        <li><span class="r ce">CE</span>Donne le ½ raccord au CO</li>
-        <li><span class="r ce">CE</span>Purge le PI</li>
-        <li><span class="r ce">CE</span>Connecte la DIV 100/2×65</li>
-        <li><span class="r ce">CE</span>Connecte le ½ raccord sur la DIV</li>
-        <li><span class="r ce">CE</span>Ouvre la 1<sup>re</sup> ligne</li>
-        <li><span class="r ce">CE</span>Connecte le ½ raccord sur la DIV</li>
-        <li><span class="r eq">EQ</span>Déroule la 2<sup>e</sup> ligne</li>
-        <li><span class="r eq">EQ</span>Donne le ½ raccord au CO</li>
-        <li><span class="r eq">EQ</span>Ordonne l'ouverture de la 2<sup>e</sup> ligne</li>
-        <li><span class="r bal">BAL</span>Remonte l'établissement</li>
-        <li><span class="r bal">BAL</span>Se met à disposition du CA</li>
-      </ul>
+    </details>
+
+    <details class="card" data-kit='{"BAL":["Dévidoir","DIV 100/2×65","Clé de poteau"]}' data-who="bal">
+      <summary>
+        <span class="who">BAL</span>
+        <span class="title">Dévidoir sur PI<span class="cond">PI à plus de 20 m</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order exec"><span class="lbl">CA → BAL</span>BAL, pour l'alimentation de l'engin au moyen du dévidoir, PE à utiliser le PI… <b>ALIMENTEZ !</b></div>
+        </div>
+        <div class="kit"><span class="k">dévidoir</span><span class="k">DIV 100/2×65</span><span class="k">clé de poteau</span></div>
+        <ul class="steps">
+          <li><span class="r ce">CE</span>Donne le ½ raccord au CO</li>
+          <li><span class="r ce">CE</span>Purge le PI</li>
+          <li><span class="r ce">CE</span>Connecte la DIV 100/2×65</li>
+          <li><span class="r ce">CE</span>Connecte le ½ raccord sur la DIV</li>
+          <li><span class="r ce">CE</span>Ouvre la 1<sup>re</sup> ligne</li>
+          <li><span class="r ce">CE</span>Connecte le ½ raccord sur la DIV</li>
+          <li><span class="r eq">EQ</span>Déroule la 2<sup>e</sup> ligne</li>
+          <li><span class="r eq">EQ</span>Donne le ½ raccord au CO</li>
+          <li><span class="r eq">EQ</span>Ordonne l'ouverture de la 2<sup>e</sup> ligne</li>
+          <li><span class="r bal">BAL</span>Remonte l'établissement</li>
+          <li><span class="r bal">BAL</span>Se met à disposition du CA</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= PHASE 2 ================= -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="num">2</span>
+      <h2>Établissement de la division</h2>
+      <p>Le BAL part en reconnaissance puis place la DIV M au point ordonné.</p>
     </div>
-  </details>
-</section>
 
-<!-- ================= PHASE 2 ================= -->
-<section class="phase">
-  <div class="phase-head">
-    <span class="num">2</span>
-    <h2>Établissement de la division</h2>
-    <p>Le BAL part en reconnaissance puis place la DIV M au point ordonné.</p>
-  </div>
-
-  <details class="card" data-kit='{"CE":["Z bleu","DIV M"],"EQ":["Z bleu","Z bleu"]}' data-who="bal">
-    <summary>
-      <span class="who">BAL</span>
-      <span class="title">Tuyaux épaulés<span class="cond">Point d'attaque à moins de 60 m</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order prep"><span class="lbl">CA → BAL</span><b>EN RECONNAISSANCE !</b> BAL au moyen des tuyaux épaulés<span class="or">OU</span>BAL pour l'alimentation d'une PE au moyen des tuyaux épaulés, <b>EN RECONNAISSANCE !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAL</span>Emplacement de la DIV ici, PE à utiliser le FPT, <b>ÉTABLISSEZ !</b></div>
-      </div>
-      <div class="kit">
+    <details class="card" data-kit='{"CE":["Z bleu","DIV M"],"EQ":["Z bleu","Z bleu"]}' data-who="bal">
+      <summary>
+        <span class="who">BAL</span>
+        <span class="title">Tuyaux épaulés<span class="cond">Point d'attaque à moins de 60 m</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAL</span><b>EN RECONNAISSANCE !</b> BAL au moyen des tuyaux épaulés<span class="or">OU</span>BAL pour l'alimentation d'une PE au moyen des tuyaux épaulés, <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAL</span>Emplacement de la DIV ici, PE à utiliser le FPT, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit">
         <span class="k"><span class="role">CE</span>
-          <svg class="hose bleu" role="img" aria-label="tuyau en Z, fourreau bleu"><use href="#hoseZ"/></svg> 1 Z bleu + DIV M</span>
-        <span class="k"><span class="role">EQ</span>
-          <svg class="hose bleu" role="img" aria-label="tuyau en Z, fourreau bleu"><use href="#hoseZ"/></svg>
-          <svg class="hose bleu" role="img" aria-label="tuyau en Z, fourreau bleu"><use href="#hoseZ"/></svg> 2 Z</span>
+          <svg class="hose bleu" role="img" aria-label="tuyau en Z, fourreau bleu, 70 mm, 40 m"><use href="#hoseZ"/></svg> 1 Z bleu + DIV M</span>
+          <span class="k"><span class="role">EQ</span>
+          <svg class="hose bleu" role="img" aria-label="tuyau en Z, fourreau bleu, 70 mm, 40 m"><use href="#hoseZ"/></svg>
+          <svg class="hose bleu" role="img" aria-label="tuyau en Z, fourreau bleu, 70 mm, 40 m"><use href="#hoseZ"/></svg> 2 Z</span>
+        </div>
+        <ul class="steps">
+          <li><span class="r ce">CE</span>Place et vérifie la DIV M fermée et défait le fourreau</li>
+          <li><span class="r ce">CE</span>Connecte le ½ raccord au fourreau EQ sur épaule</li>
+          <li><span class="r ce">CE</span><b>EN AVANT !</b></li>
+          <li><span class="r ce">CE</span>Suit l'EQ</li>
+          <li><span class="r bal">BAL</span>Remonte l'établissement</li>
+          <li><span class="r bal">BAL</span>Se met à disposition du CA</li>
+        </ul>
       </div>
-      <ul class="steps">
-        <li><span class="r ce">CE</span>Place et vérifie la DIV M fermée et défait le fourreau</li>
-        <li><span class="r ce">CE</span>Connecte le ½ raccord au fourreau EQ sur épaule</li>
-        <li><span class="r ce">CE</span><b>EN AVANT !</b></li>
-        <li><span class="r ce">CE</span>Suit l'EQ</li>
-        <li><span class="r bal">BAL</span>Remonte l'établissement</li>
-        <li><span class="r bal">BAL</span>Se met à disposition du CA</li>
-      </ul>
-    </div>
-  </details>
+    </details>
 
-  <details class="card" data-kit='{"BAL":["Dévidoir","DIV M"]}' data-who="bal">
-    <summary>
-      <span class="who">BAL</span>
-      <span class="title">Dévidoir<span class="cond">Point d'attaque à plus de 60 m · option : inaccessible au dévidoir → + tuyaux épaulés</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order prep"><span class="lbl">CA → BAL</span><b>EN RECONNAISSANCE !</b><span class="or">OU</span>BAL pour l'alimentation d'une PE, <b>EN RECONNAISSANCE !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAL</span>Emplacement de la DIV ici, point d'eau à utiliser le FPT, <b>ÉTABLISSEZ !</b></div>
+    <details class="card" data-kit='{"BAL":["Dévidoir","DIV M"]}' data-who="bal">
+      <summary>
+        <span class="who">BAL</span>
+        <span class="title">Dévidoir<span class="cond">Point d'attaque à plus de 60 m · option : inaccessible au dévidoir → + tuyaux épaulés</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAL</span><b>EN RECONNAISSANCE !</b><span class="or">OU</span>BAL pour l'alimentation d'une PE, <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAL</span>Emplacement de la DIV ici, point d'eau à utiliser le FPT, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit"><span class="k">dévidoir</span><span class="k">DIV M</span><span class="k">option : + tuyaux épaulés si inaccessible</span></div>
+        <ul class="steps">
+          <li><span class="r ce">CE</span>Place la DIV M au sol</li>
+          <li><span class="r ce">CE</span>Vérifie la DIV M fermée</li>
+          <li><span class="r eq">EQ</span>Déroule le dévidoir</li>
+          <li><span class="r ce">CE</span>Maintient la DIV M en place</li>
+          <li><span class="r ce">CE</span>Rejoint l'EQ</li>
+          <li><span class="r ce">CE</span>Donne le ½ raccord au CO</li>
+          <li><span class="r bal">BAL</span>Remonte l'établissement</li>
+          <li><span class="r bal">BAL</span>Se met à disposition du CA</li>
+        </ul>
       </div>
-      <div class="kit"><span class="k">dévidoir</span><span class="k">DIV M</span><span class="k">option : + tuyaux épaulés si inaccessible</span></div>
-      <ul class="steps">
-        <li><span class="r ce">CE</span>Place la DIV M au sol</li>
-        <li><span class="r ce">CE</span>Vérifie la DIV M fermée</li>
-        <li><span class="r eq">EQ</span>Déroule le dévidoir</li>
-        <li><span class="r ce">CE</span>Maintient la DIV M en place</li>
-        <li><span class="r ce">CE</span>Rejoint l'EQ</li>
-        <li><span class="r ce">CE</span>Donne le ½ raccord au CO</li>
-        <li><span class="r bal">BAL</span>Remonte l'établissement</li>
-        <li><span class="r bal">BAL</span>Se met à disposition du CA</li>
-      </ul>
-    </div>
-  </details>
-</section>
+    </details>
+  </section>
 
-<!-- ================= PHASE 3 ================= -->
-<section class="phase">
-  <div class="phase-head">
-    <span class="num">3</span>
-    <h2>Établissement de la lance</h2>
-    <p>Le BAT (ou le BAL pour l'échelle / le hissage) établit la lance depuis la DIV M.</p>
-  </div>
-
-  <details class="card" data-kit='{"CE":["Z rouge","LDV 1000"],"EQ":["Z rouge","Z rouge"]}' data-who="bat">
-    <summary>
-      <span class="who">BAT</span>
-      <span class="title">LDV 1000<span class="cond">Fourreau fermé</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order prep"><span class="lbl">CA → BAT</span>BAT pour l'établissement d'une LDV 1000 <b>EN RECONNAISSANCE !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAT</span>PA ici, PE à utiliser…, débit, mission, <b>ÉTABLISSEZ !</b></div>
-      </div>
-      <div class="kit">
-        <span class="k"><span class="role">CE</span><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg> 1 Z rouge + LDV 1000</span>
-        <span class="k"><span class="role">EQ</span><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg> 2 Z</span>
-      </div>
-      <ul class="steps">
-        <li><span class="r ce">CE</span>Place la LDV 1000 et fourreau fermé</li>
-        <li><span class="r ce">CE</span>Défait le fourreau EQ sur épaule</li>
-        <li><span class="r ce">CE</span>Connecte le ½ raccord au sol</li>
-        <li><span class="r ce">CE</span><b>EN AVANT !</b></li>
-        <li><span class="r eq">EQ</span>Établit / CE fait sa réserve</li>
-        <li><span class="r eq">EQ</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
-        <li><span class="r bat">BAT</span>Ouverture <b>SUR ORDRE</b></li>
-        <li><span class="r ce">CE</span>Utilise le plein débit si doublé par l'EQ</li>
-      </ul>
+  <!-- ================= PHASE 3 ================= -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="num">3</span>
+      <h2>Établissement de la lance</h2>
+      <p>Le BAT (ou le BAL pour l'échelle / le hissage) établit la lance depuis la DIV M — ou directement depuis l'engin pour la LDT.</p>
     </div>
-  </details>
 
-  <details class="card" data-kit='{"BAT":["C.AT"]}' data-who="bat">
-    <summary>
-      <span class="who">BAT</span>
-      <span class="title">LDV 500 / LM2 / LQP au moyen de la C.AT<span class="cond">Caisse d'attaque</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order prep"><span class="lbl">CA → BAT</span>BAT pour l'établissement d'une LDV 500 / LM2 / LQP au moyen de la C.AT <b>EN RECONNAISSANCE !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAT</span>C.AT ici… (+ 5 m côté feu) PA ici, PE à utiliser…, débit, mission, <b>ÉTABLISSEZ !</b></div>
+    <details class="card" data-kit='{"CE":["Z rouge","LDV 1000"],"EQ":["Z rouge","Z rouge"]}' data-who="bat">
+      <summary>
+        <span class="who">BAT</span>
+        <span class="title">LDV 1000<span class="cond">Fourreau fermé</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAT</span>BAT pour l'établissement d'une LDV 1000 <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAT</span>PA ici, PE à utiliser…, débit, mission, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit">
+          <span class="k"><span class="role">CE</span><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg> 1 Z rouge + LDV 1000</span>
+          <span class="k"><span class="role">EQ</span><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg> 2 Z</span>
+        </div>
+        <ul class="steps">
+          <li><span class="r ce">CE</span>Place la LDV 1000 et fourreau fermé</li>
+          <li><span class="r ce">CE</span>Défait le fourreau EQ sur épaule</li>
+          <li><span class="r ce">CE</span>Connecte le ½ raccord au sol</li>
+          <li><span class="r ce">CE</span><b>EN AVANT !</b></li>
+          <li><span class="r eq">EQ</span>Établit / CE fait sa réserve</li>
+          <li><span class="r eq">EQ</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
+          <li><span class="r bat">BAT</span>Ouverture <b>SUR ORDRE</b></li>
+          <li><span class="r ce">CE</span>Utilise le plein débit si doublé par l'EQ</li>
+        </ul>
       </div>
-      <div class="kit"><span class="k"><span class="role">C.AT</span> caisse d'attaque</span><span class="k">LDV 500 · LM2 · LQP</span><span class="k">2 raccords · 3 boucles</span></div>
-      <ul class="steps">
-        <li><span class="r ce">CE</span>Se met côté lance</li>
-        <li><span class="r ce">CE</span>Prend la lance et 2 raccords</li>
-        <li><span class="r ce">CE</span>Prend 3 boucles (sauf si CE ordonne 2 tuyaux)</li>
-        <li><span class="r bat">BAT</span>Recule de 5 m</li>
-        <li><span class="r bat">BAT</span>Établit les tuyaux</li>
-        <li><span class="r ce">CE</span>Ordonne un changement de côté si le feu est opposé à la lance</li>
-        <li><span class="r eq">EQ</span>Ramène la caisse à la PE, connecte et ouvre</li>
-        <li><span class="r eq">EQ</span>Remonte l'établissement et rejoint le CE</li>
-      </ul>
-    </div>
-  </details>
+    </details>
 
-  <details class="card" data-kit='{"CE":["O jaune","O jaune","LDV 500","VA"],"EQ":["Z rouge","Z rouge"]}' data-who="bat">
-    <summary>
-      <span class="who">BAT</span>
-      <span class="title">LDV 500<span class="cond">Avec vanne d'arrêt · option prolongement en anticipation</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order prep"><span class="lbl">CA → BAT</span><b>EN RECONNAISSANCE !</b><span class="or">OU</span>BAT pour l'établissement d'une LDV 500 <b>EN RECONNAISSANCE !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAT</span>PA ici, PE à utiliser…, débit, mission, <b>ÉTABLISSEZ !</b></div>
+    <details class="card" data-kit='{"BAT":["C.AT"]}' data-who="bat">
+      <summary>
+        <span class="who">BAT</span>
+        <span class="title">LDV 500 / LM2 / LQP au moyen de la C.AT<span class="cond">Caisse d'attaque</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAT</span>BAT pour l'établissement d'une LDV 500 / LM2 / LQP au moyen de la C.AT <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAT</span>C.AT ici… (+ 5 m côté feu) PA ici, PE à utiliser…, débit, mission, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit"><span class="k"><span class="role">C.AT</span> caisse d'attaque</span><span class="k">LDV 500 · LM2 · LQP</span><span class="k">2 raccords · 3 boucles</span></div>
+        <ul class="steps">
+          <li><span class="r ce">CE</span>Se met côté lance</li>
+          <li><span class="r ce">CE</span>Prend la lance et 2 raccords</li>
+          <li><span class="r ce">CE</span>Prend 3 boucles (sauf si CE ordonne 2 tuyaux)</li>
+          <li><span class="r bat">BAT</span>Recule de 5 m</li>
+          <li><span class="r bat">BAT</span>Établit les tuyaux</li>
+          <li><span class="r ce">CE</span>Ordonne un changement de côté si le feu est opposé à la lance</li>
+          <li><span class="r eq">EQ</span>Ramène la caisse à la PE, connecte et ouvre</li>
+          <li><span class="r eq">EQ</span>Remonte l'établissement et rejoint le CE</li>
+        </ul>
       </div>
-      <div class="kit">
-        <span class="k"><span class="role">CE</span><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune"><use href="#hoseO"/></svg><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune"><use href="#hoseO"/></svg> 2 O jaunes + LDV 500 + VA</span>
-        <span class="k"><span class="role">EQ</span><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg> 2 Z</span>
-      </div>
-      <ul class="steps">
-        <li><span class="r ce">CE</span>Pose les fourreaux</li>
-        <li><span class="r ce">CE</span>Défait le fourreau EQ sur épaule</li>
-        <li><span class="r ce">CE</span>Connecte le ½ raccord à la VA au sol</li>
-        <li><span class="r ce">CE</span><b>EN AVANT !</b></li>
-        <li><span class="r eq">EQ</span>Établit / CE ouvre le fourreau et se place dans l'O *</li>
-        <li><span class="r eq">EQ</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
-        <li><span class="r co">CO</span>Ou EQ ouvre</li>
-        <li><span class="r eq">EQ</span>Rejoint le CE et ouvre la VA <u>d'un coup sec</u></li>
-        <li class="opt" style="display:block">
-          <div class="opt-title">* Option : prolongement en anticipation</div>
-          <ul class="steps">
-            <li><span class="r eq">EQ</span>Établit / CE ouvre ses 2 O l'un devant l'autre</li>
-            <li><span class="r ce">CE</span>Déconnecte la LDV et connecte au 1<sup>er</sup> O</li>
-            <li><span class="r ce">CE</span>Connecte la LDV au 1<sup>er</sup> O et se place au centre</li>
-            <li><span class="r eq">EQ</span>Rejoint le CE, se place dans le 2<sup>e</sup> O</li>
-            <li><span class="r eq">EQ</span>Ouvre la VA <u>d'un coup sec</u></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </details>
+    </details>
 
-  <details class="card" data-kit='{"CE":["O jaune","O jaune","LDV 500","VA"],"EQ":["Z rouge","Z rouge"],"BAL":["Échelle à coulisse"]}' data-who="bat bal">
-    <summary>
-      <span class="who">BAT + BAL</span>
-      <span class="title">LDV 500 au moyen de l'échelle à coulisse<span class="cond">Le BAL positionne l'échelle</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order prep"><span class="lbl">CA → BAT</span>Pour l'établissement d'une LDV 500 au moyen de l'échelle à coulisse <b>EN RECONNAISSANCE !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAL</span>BAL emplacement de l'échelle à coulisse ici, <b>ÉTABLISSEZ !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAT</span>BAT PA ici, PE à utiliser…, débit, accès, mission, <b>ÉTABLISSEZ !</b></div>
+    <details class="card" data-kit='{"CE":["O jaune","O jaune","LDV 500","VA"],"EQ":["Z rouge","Z rouge"]}' data-who="bat">
+      <summary>
+        <span class="who">BAT</span>
+        <span class="title">LDV 500<span class="cond">Avec vanne d'arrêt · option prolongement en anticipation</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAT</span><b>EN RECONNAISSANCE !</b><span class="or">OU</span>BAT pour l'établissement d'une LDV 500 <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAT</span>PA ici, PE à utiliser…, débit, mission, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit">
+          <span class="k"><span class="role">CE</span><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune, 45 mm, 20 m"><use href="#hoseO"/></svg><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune, 45 mm, 20 m"><use href="#hoseO"/></svg> 2 O jaunes + LDV 500 + VA</span>
+          <span class="k"><span class="role">EQ</span><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg> 2 Z</span>
+        </div>
+        <ul class="steps">
+          <li><span class="r ce">CE</span>Pose les fourreaux</li>
+          <li><span class="r ce">CE</span>Défait le fourreau EQ sur épaule</li>
+          <li><span class="r ce">CE</span>Connecte le ½ raccord à la VA au sol</li>
+          <li><span class="r ce">CE</span><b>EN AVANT !</b></li>
+          <li><span class="r eq">EQ</span>Établit / CE ouvre le fourreau et se place dans l'O *</li>
+          <li><span class="r eq">EQ</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
+          <li><span class="r co">CO</span>Ou EQ ouvre</li>
+          <li><span class="r eq">EQ</span>Rejoint le CE et ouvre la VA <u>d'un coup sec</u></li>
+          <li class="opt" style="display:block">
+            <div class="opt-title">* Option : prolongement en anticipation</div>
+            <ul class="steps">
+              <li><span class="r eq">EQ</span>Établit / CE ouvre ses 2 O l'un devant l'autre</li>
+              <li><span class="r ce">CE</span>Déconnecte la LDV et connecte au 1<sup>er</sup> O</li>
+              <li><span class="r ce">CE</span>Connecte la LDV au 1<sup>er</sup> O et se place au centre</li>
+              <li><span class="r eq">EQ</span>Rejoint le CE, se place dans le 2<sup>e</sup> O</li>
+              <li><span class="r eq">EQ</span>Ouvre la VA <u>d'un coup sec</u></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <div class="kit">
-        <span class="k"><span class="role">CE</span><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune"><use href="#hoseO"/></svg><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune"><use href="#hoseO"/></svg> 2 O jaunes + LDV 500 + VA</span>
-        <span class="k"><span class="role">EQ</span> <svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg> 2 Z rouges</span>
-        <span class="k"><span class="role">BAL</span> échelle à coulisse</span>
-      </div>
-      <ul class="steps">
-        <li><span class="r bal">BAL</span>Positionne l'échelle et se met à disposition du CA</li>
-        <li><span class="r ce">CE</span>Met l'O avec LDV et VA sur l'ARI</li>
-        <li><span class="r eq">EQ</span>Défait les fourreaux et connecte le ½ raccord à la VA</li>
-        <li><span class="r eq">EQ</span>Connecte 2 Z ensemble</li>
-        <li><span class="r ce">CE</span>Monte à l'échelle</li>
-        <li><span class="r ce">CE</span>Se positionne au PA et amarre la VA</li>
-        <li><span class="r ce">CE</span><b>OUVREZ !</b></li>
-        <li><span class="r eq">EQ</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
-        <li><span class="r eq">EQ</span>Récupère le 2<sup>e</sup> O et rejoint le CE par l'échelle</li>
-        <li><span class="r eq">EQ</span>Rejoint le CE et ouvre la VA <u>d'un coup sec</u></li>
-      </ul>
-    </div>
-  </details>
+    </details>
 
-  <details class="card" data-kit='{"CE":["O jaune","O jaune","LDV 500","VA"],"EQ":["Z rouge","Z rouge"],"BAL":["Commande"]}' data-who="bat bal">
-    <summary>
-      <span class="who">BAT + BAL</span>
-      <span class="title">LDV 500 par l'extérieur<span class="cond">Tuyaux hissés à la commande</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
-    <div class="body">
-      <div class="orders">
-        <div class="order prep"><span class="lbl">CA → BAT</span>Pour l'établissement d'une LDV 500 par l'extérieur <b>EN RECONNAISSANCE !</b></div>
-        <div class="order exec"><span class="lbl">CA → BAL</span>BAL emplacement des tuyaux pour être hissés, ici !</div>
-        <div class="order exec"><span class="lbl">CA → BAT</span>BAT PA ici, PE à utiliser…, débit, accès, mission, <b>ÉTABLISSEZ !</b></div>
+    <details class="card" data-kit='{"CE":["O jaune","O jaune","LDV 500","VA"],"EQ":["Z rouge","Z rouge"],"BAL":["Échelle à coulisse"]}' data-who="bat bal">
+      <summary>
+        <span class="who">BAT + BAL</span>
+        <span class="title">LDV 500 au moyen de l'échelle à coulisse<span class="cond">Le BAL positionne l'échelle</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAT</span>Pour l'établissement d'une LDV 500 au moyen de l'échelle à coulisse <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAL</span>BAL emplacement de l'échelle à coulisse ici, <b>ÉTABLISSEZ !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAT</span>BAT PA ici, PE à utiliser…, débit, accès, mission, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit">
+          <span class="k"><span class="role">CE</span><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune, 45 mm, 20 m"><use href="#hoseO"/></svg><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune, 45 mm, 20 m"><use href="#hoseO"/></svg> 2 O jaunes + LDV 500 + VA</span>
+          <span class="k"><span class="role">EQ</span> <svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg> 2 Z rouges</span>
+          <span class="k"><span class="role">BAL</span> échelle à coulisse</span>
+        </div>
+        <ul class="steps">
+          <li><span class="r bal">BAL</span>Positionne l'échelle et se met à disposition du CA</li>
+          <li><span class="r ce">CE</span>Met l'O avec LDV et VA sur l'ARI</li>
+          <li><span class="r eq">EQ</span>Défait les fourreaux et connecte le ½ raccord à la VA</li>
+          <li><span class="r eq">EQ</span>Connecte 2 Z ensemble</li>
+          <li><span class="r ce">CE</span>Monte à l'échelle</li>
+          <li><span class="r ce">CE</span>Se positionne au PA et amarre la VA</li>
+          <li><span class="r ce">CE</span><b>OUVREZ !</b></li>
+          <li><span class="r eq">EQ</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
+          <li><span class="r eq">EQ</span>Récupère le 2<sup>e</sup> O et rejoint le CE par l'échelle</li>
+          <li><span class="r eq">EQ</span>Rejoint le CE et ouvre la VA <u>d'un coup sec</u></li>
+        </ul>
       </div>
-      <div class="kit">
-        <span class="k"><span class="role">CE</span><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune"><use href="#hoseO"/></svg><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune"><use href="#hoseO"/></svg> 2 O jaunes + LDV 500 + VA</span>
-        <span class="k"><span class="role">EQ</span> <svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge"><use href="#hoseZ"/></svg> 2 Z rouges</span>
-        <span class="k"><span class="role">BAL</span> commande</span>
+    </details>
+
+    <details class="card" data-kit='{"CE":["O jaune","O jaune","LDV 500","VA"],"EQ":["Z rouge","Z rouge"],"BAL":["Commande"]}' data-who="bat bal">
+      <summary>
+        <span class="who">BAT + BAL</span>
+        <span class="title">LDV 500 par l'extérieur<span class="cond">Tuyaux hissés à la commande</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAT</span>Pour l'établissement d'une LDV 500 par l'extérieur <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAL</span>BAL emplacement des tuyaux pour être hissés, ici !</div>
+          <div class="order exec"><span class="lbl">CA → BAT</span>BAT PA ici, PE à utiliser…, débit, accès, mission, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit">
+          <span class="k"><span class="role">CE</span><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune, 45 mm, 20 m"><use href="#hoseO"/></svg><svg class="hose jaune" role="img" aria-label="tuyau en O, fourreau jaune, 45 mm, 20 m"><use href="#hoseO"/></svg> 2 O jaunes + LDV 500 + VA</span>
+          <span class="k"><span class="role">EQ</span> <svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg><svg class="hose rouge" role="img" aria-label="tuyau en Z, fourreau rouge, 45 mm, 20 m"><use href="#hoseZ"/></svg> 2 Z rouges</span>
+          <span class="k"><span class="role">BAL</span> commande</span>
+        </div>
+        <ul class="steps">
+          <li><span class="r bal">BAL</span>Se positionne au point de hissage</li>
+          <li><span class="r eq">EQ</span>Laisse 2 Z au point de hissage</li>
+          <li><span class="r bal">BAL</span>Connecte 2 Z ensemble</li>
+          <li><span class="r ce">CE</span>Se positionne au PA et ouvre le fourreau</li>
+          <li><span class="r eq">EQ</span>Amarre la commande</li>
+          <li><span class="r eq">EQ</span><b>ATTENTION POUR ENVOYER</b></li>
+          <li><span class="r bal">BAL</span><b>ENVOYEZ !</b> amarre le Z à la commande</li>
+          <li><span class="r bal">BAL</span><b>HISSEZ !</b></li>
+          <li><span class="r eq">EQ</span>Amarre le Z et le connecte à la VA</li>
+          <li><span class="r eq">EQ</span><b>OUVREZ !</b></li>
+          <li><span class="r bal">BAL</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
+          <li><span class="r eq">EQ</span>Rejoint le CE et ouvre la VA <u>d'un coup sec</u></li>
+        </ul>
       </div>
-      <ul class="steps">
-        <li><span class="r bal">BAL</span>Se positionne au point de hissage</li>
-        <li><span class="r eq">EQ</span>Laisse 2 Z au point de hissage</li>
-        <li><span class="r bal">BAL</span>Connecte 2 Z ensemble</li>
-        <li><span class="r ce">CE</span>Se positionne au PA et ouvre le fourreau</li>
-        <li><span class="r eq">EQ</span>Amarre la commande</li>
-        <li><span class="r eq">EQ</span><b>ATTENTION POUR ENVOYER</b></li>
-        <li><span class="r bal">BAL</span><b>ENVOYEZ !</b> amarre le Z à la commande</li>
-        <li><span class="r bal">BAL</span><b>HISSEZ !</b></li>
-        <li><span class="r eq">EQ</span>Amarre le Z et le connecte à la VA</li>
-        <li><span class="r eq">EQ</span><b>OUVREZ !</b></li>
-        <li><span class="r bal">BAL</span>Donne le ½ raccord au CO ou connecte à la DIV M</li>
-        <li><span class="r eq">EQ</span>Rejoint le CE et ouvre la VA <u>d'un coup sec</u></li>
-      </ul>
-    </div>
-  </details>
-</section>
+    </details>
+
+    <details class="card verify-card" data-kit='{"CE":["LDT"],"EQ":["Commande"]}' data-who="bat">
+      <summary>
+        <span class="who">BAT</span>
+        <span class="title">LDT <span class="vbadge" title="Source différente : à vérifier">⚠ à vérifier</span><span class="cond">Attaque directe depuis l'engin</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="verify"><span class="vico" aria-hidden="true">⚠</span><div><b>À vérifier.</b> Cette fiche vient d'une source (JSP BAS, « manœuvres types ETB-1 »). Les ordres du CA ne figurent pas dans cette source : ils sont reconstitués sur le modèle des autres fiches.</div></div>
+        <div class="orders">
+          <div class="order prep"><span class="lbl">CA → BAT (reconstitué)</span>BAT pour l'établissement de la LDT <b>EN RECONNAISSANCE !</b></div>
+          <div class="order exec"><span class="lbl">CA → BAT (reconstitué)</span>PA ici, débit, mission, <b>ÉTABLISSEZ !</b></div>
+        </div>
+        <div class="kit"><span class="k"><span class="role">CE</span> LDT (lance + tuyau du dévidoir tournant)</span><span class="k"><span class="role">EQ</span> commande</span><span class="k">ARI · lampe · radio</span></div>
+        <ul class="steps">
+          <li><span class="r ce">CE</span>Prend la LDT et établit 2 à 3 boucles qu'il met sur son épaule</li>
+          <li><span class="r ce">CE</span>Suit le CA en direction du PA</li>
+          <li><span class="r eq">EQ</span>Aide le CE en tirant le tuyau</li>
+          <li><span class="r eq">EQ</span>Au 1<sup>er</sup> raccord à son niveau, le prend et part vers le CE pour établir une réserve</li>
+          <li><span class="r ce">CE</span>S'arrête au PA</li>
+          <li><span class="r eq">EQ</span>Va jusqu'au PA et ordonne « Halte » au CO en posant le raccord au pied du CE</li>
+          <li><span class="r eq">EQ</span>Double le porte-lance</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card verify-card" data-kit='{}' data-noquiz data-who="bat">
+      <summary>
+        <span class="who">BAT</span>
+        <span class="title">Prolongation d'établissement ou remplacement de tuyau <span class="vbadge" title="Source différente : à vérifier">⚠ à vérifier</span><span class="cond">Fiche incomplète</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="body">
+        <div class="verify"><span class="vico" aria-hidden="true">⚠</span><div><b>À vérifier</b> Pour la prolongation, ta fiche de référence décrit déjà l'option « prolongement en anticipation » de la manœuvre LDV 500. Le remplacement de tuyau reste à compléter à partir de ta documentation.</div></div>
+      </div>
+    </details>
+  </section>
 </main>
 
 <section class="lexique">
@@ -526,9 +568,12 @@
     <div><dt>LM2</dt> <dd>— Lance mousse</dd></div>
     <div><dt>LQP</dt> <dd>— Lance queue de paon</dd></div>
     <div><dt>LDV</dt> <dd>— Lance à débit variable</dd></div>
+    <div><dt>LDT</dt> <dd>— Lance du dévidoir tournant</dd></div>
     <div><dt>DIV M</dt> <dd>— Division mixte</dd></div>
     <div><dt>VA</dt> <dd>— Vanne d'arrêt</dd></div>
-    <div><dt>O / Z</dt> <dd>— Tuyau en O (roulé) / en Z (plié)</dd></div>
+    <div><dt>Z rouge</dt> <dd>— Tuyau plié en Z, fourreau rouge : Ø 45 mm, 20 m</dd></div>
+    <div><dt>Z bleu</dt> <dd>— Tuyau plié en Z, fourreau bleu : Ø 70 mm, 40 m</dd></div>
+    <div><dt>O jaune</dt> <dd>— Tuyau roulé en O, fourreau jaune : Ø 45 mm, 20 m</dd></div>
     <div><dt>CA</dt> <dd>— Chef d'agrès</dd></div>
     <div><dt>CO</dt> <dd>— Conducteur</dd></div>
     <div><dt>BAT</dt> <dd>— Binôme d'attaque</dd></div>
@@ -554,7 +599,8 @@
 
   // ================= MODE RÉVISION =================
   const HOSE={'Z rouge':['hoseZ','rouge'],'Z bleu':['hoseZ','bleu'],'O jaune':['hoseO','jaune']};
-  const PALETTE=['Z rouge','Z bleu','O jaune','LDV 1000','LDV 500','LM2','LQP','VA','DIV M','DIV 100/2×65','C.AL','C.AT','Dévidoir','Clé de poteau','Échelle à coulisse','Commande'];
+  const PALETTE=['Z rouge','Z bleu','O jaune','LDV 1000','LDV 500','LDT','LM2','LQP','VA','DIV M','DIV 100/2×65','C.AL','C.AT','Dévidoir','Clé de poteau','Échelle à coulisse','Commande'];
+  const HOSE_INFO={'Z rouge':'Tuyau plié en Z, fourreau rouge — Ø 45 mm, 20 m','Z bleu':'Tuyau plié en Z, fourreau bleu — Ø 70 mm, 40 m','O jaune':'Tuyau roulé en O, fourreau jaune — Ø 45 mm, 20 m'};
   const matHTML=m=>HOSE[m]?`<svg class="hose ${HOSE[m][1]}" aria-hidden="true"><use href="#${HOSE[m][0]}"/></svg>${m}`:m;
   const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
   const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -565,8 +611,10 @@
     const lines=[];
     card.querySelectorAll('.orders .order').forEach(o=>{
       const kind=o.classList.contains('prep')?'prep':'exec';
-      const txt=[...o.childNodes].filter(n=>!(n.nodeType===1&&n.classList.contains('lbl'))).map(n=>n.textContent).join('').replace(/\s+/g,' ').trim();
-      lines.push({id:`${ci}-${lines.length}`,role:kind==='prep'?'PRÉPA':'EXÉC',cls:kind,text:txt});
+      const parts=[...o.childNodes].filter(n=>!(n.nodeType===1&&n.classList.contains('lbl')));
+      const txt=parts.map(n=>(n.nodeType===1&&n.classList.contains('or'))?' — OU — ':n.textContent).join('').replace(/\s+/g,' ').trim();
+      const html=parts.map(n=>(n.nodeType===1&&n.classList.contains('or'))?'<span class="or">OU</span>':esc(n.textContent).replace(/\s+/g,' ')).join('').trim();
+      lines.push({id:`${ci}-${lines.length}`,role:kind==='prep'?'PRÉPA':'EXÉC',cls:kind,text:txt,html});
     });
     card.querySelectorAll('.body > .steps > li:not(.opt)').forEach(li=>{
       const r=li.querySelector('.r');
@@ -577,25 +625,26 @@
   });
   const ROLES=['CE','EQ','BAL','BAT','CO'];
   const isOrder=l=>l.cls==='prep'||l.cls==='exec';
-  const lineHTML=l=>`<span class="line" style="display:flex;gap:8px;align-items:flex-start">${isOrder(l)?`<span class="r ${l.cls}">${l.role}</span>`:`<span class="r who-q">?</span>`}<span>${esc(l.text)}</span></span>`;
+  const lineHTML=l=>`<span class="line" style="display:flex;gap:8px;align-items:flex-start">${isOrder(l)?`<span class="r ${l.cls}">${l.role}</span>`:`<span class="r who-q">?</span>`}<span class="ltxt">${l.html||esc(l.text)}</span></span>`;
 
   // 2. état par manœuvre (persistant : on ne reconstruit jamais le DOM de l'état)
   const state=cards.map((card,ci)=>{
     const kit=JSON.parse(card.dataset.kit);
     const distract=shuffle(allLines.filter(l=>l.card!==ci)).slice(0,5);
     return {kit,slots:Object.fromEntries(Object.keys(kit).map(k=>[k,[]])),activeSlot:Object.keys(kit)[0],
-            pool:shuffle([...cardLines[ci],...distract]),seq:[],checkedKit:null,checkedSeq:null};
+      pool:shuffle([...cardLines[ci],...distract]),seq:[],checkedKit:null,checkedSeq:null};
   });
 
   // 3. construire l'interface
   cards.forEach((card,ci)=>{
+    if(card.hasAttribute('data-noquiz')) return;
     const st=state[ci];
     const q=document.createElement('div'); q.className='quiz';
     q.innerHTML=`
       <h4>Matériel <span class="score" data-kit-score></span></h4>
       <p class="hint">Choisis un rôle, puis clique le matériel à lui donner. Clique × pour retirer.</p>
       <div class="slots"></div>
-      <div class="palette">${PALETTE.map(m=>`<button type="button" class="chip" data-mat="${m}">${matHTML(m)}</button>`).join('')}</div>
+      <div class="palette">${PALETTE.map(m=>`<button type="button" class="chip" data-mat="${m}" ${HOSE_INFO[m]?`title="${HOSE_INFO[m]}"`:``}>${matHTML(m)}</button>`).join('')}</div>
       <h4>Déroulé <span class="score" data-seq-score></span></h4>
       <p class="hint">Ajoute les ordres et les actions de cette manœuvre dans le bon ordre. Certaines lignes proposées appartiennent à d'autres manœuvres. Pour chaque action ajoutée, indique <b>qui l'exécute</b> (CE, EQ, BAL, BAT ou CO) dans le menu « Qui ? ».</p>
       <ol class="seq"></ol>
@@ -642,8 +691,8 @@
         const chk=st.checkedSeq&&st.checkedSeq[i];
         if(chk) li.classList.add(chk.pos&&chk.role?'ok':'ko');
         const roleSel=isOrder(l)?`<span class="r ${l.cls}">${l.role}</span>`
-          :`<select class="rolesel${chk?(chk.role?' ok':' ko'):''}" data-role="${i}" aria-label="qui exécute"><option value="">Qui ?</option>${ROLES.map(r=>`<option ${it.role===r?'selected':''}>${r}</option>`).join('')}</select>`;
-        li.innerHTML=`<span class="n">${i+1}</span>${roleSel}<span>${esc(l.text)}</span><span class="ctl">
+                :`<select class="rolesel${chk?(chk.role?' ok':' ko'):''}" data-role="${i}" aria-label="qui exécute"><option value="">Qui ?</option>${ROLES.map(r=>`<option ${it.role===r?'selected':''}>${r}</option>`).join('')}</select>`;
+        li.innerHTML=`<span class="n">${i+1}</span>${roleSel}<span class="ltxt">${l.html||esc(l.text)}</span><span class="ctl">
           <button type="button" aria-label="monter" data-up="${i}" ${i===0?'disabled':''}>▲</button>
           <button type="button" aria-label="descendre" data-down="${i}" ${i===st.seq.length-1?'disabled':''}>▼</button>
           <button type="button" aria-label="retirer" data-del="${i}">×</button></span>`;
@@ -705,9 +754,9 @@
     'CA':"Chef d'agrès",'CE':"Chef d'équipe",'EQ':"Équipier",'CO':"Conducteur",
     'BAT':"Binôme d'attaque",'BAL':"Binôme d'alimentation",
     'PI':"Poteau d'incendie",'PE':"Prise d'eau",'PA':"Point d'attaque",
-    'LDV':"Lance à débit variable",'LM2':"Lance mousse",'LQP':"Lance queue de paon",
+    'LDV':"Lance à débit variable",'LDT':"Lance du dévidoir tournant",'ETB':"Établissement",'LM2':"Lance mousse",'LQP':"Lance queue de paon",
     'DIV':"Division",'VA':"Vanne d'arrêt",'ARI':"Appareil respiratoire isolant",'FPT':"Fourgon pompe-tonne",
-    'O':"Tuyau roulé en O",'Z':"Tuyau plié en Z"
+    'O':"Tuyau roulé en O — fourreau jaune, Ø 45 mm, 20 m",'Z':"Tuyau plié en Z — fourreau rouge : Ø 45 mm, 20 m · fourreau bleu : Ø 70 mm, 40 m"
   };
   const keys=Object.keys(ABBR).sort((a,b)=>b.length-a.length).map(k=>k.replace(/\./g,'\\.'));
   const re=new RegExp('(^|[^A-Za-z0-9À-ÿ.])('+keys.join('|')+')(?![A-Za-z0-9À-ÿ])','g');
@@ -727,6 +776,13 @@
       [...node.childNodes].forEach(walk);
     }
   };
+  // les étapes sont des grilles (badge | texte) : on regroupe le texte dans un seul span
+  document.querySelectorAll('.steps > li:not(.opt)').forEach(li=>{
+    const r=li.querySelector(':scope > .r'); if(!r||li.querySelector(':scope > .txt'))return;
+    const span=document.createElement('span'); span.className='txt';
+    [...li.childNodes].filter(n=>n!==r).forEach(n=>span.appendChild(n));
+    li.appendChild(span);
+  });
   document.querySelectorAll('header h1 small, .legend, .phase-head p, .card summary .title, .who, .order, .kit, .steps').forEach(walk);
   // open the first card of each phase by default
   document.querySelectorAll('.phase').forEach(p=>{const c=p.querySelector('.card'); if(c) c.open=true;});
