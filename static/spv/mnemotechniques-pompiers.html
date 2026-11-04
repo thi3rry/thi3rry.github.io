@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr"><style id="waterfox-blocker-cosmetic-style"></style><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiche de révision – Moyens mnémotechniques sapeurs-pompiers</title>
+<style>
+  :root{--red:#c62828;--red-d:#8e0000;--bg:#f6f3f1;--card:#fff;--ink:#222;--mut:#6b6b6b;--line:#e4dcd8;--warn:#fff4e5;--warn-b:#f0a020}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+  header{background:linear-gradient(135deg,var(--red),var(--red-d));color:#fff;padding:18px 16px 14px}
+  header h1{margin:0;font-size:1.3rem}
+  header p{margin:6px 0 0;font-size:.88rem;opacity:.9}
+  .bar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .bar button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 11px;font-size:.84rem;cursor:pointer}
+  .bar button.on{background:var(--red);border-color:var(--red);color:#fff}
+  .bar .sep{flex-basis:100%;height:0}
+  main{max-width:900px;margin:0 auto;padding:12px}
+  h2.theme{font-size:1rem;margin:22px 4px 8px;color:var(--red-d);border-left:4px solid var(--red);padding-left:8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .card{background:var(--card);border-radius:12px;border:1px solid var(--line);padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .card h3{margin:0;font-size:1.15rem;letter-spacing:.04em;color:var(--red)}
+  .card .use{margin:4px 0 8px;font-size:.85rem;color:var(--mut)}
+  ul.items{list-style:none;margin:0;padding:0}
+  ul.items li{padding:5px 0;border-top:1px dashed var(--line);cursor:default}
+  ul.items li:first-child{border-top:0}
+  .k{display:inline-block;min-width:1.9em;font-weight:800;color:#fff;background:var(--red);border-radius:5px;text-align:center;padding:0 4px;margin-right:6px;font-size:.9rem}
+  .n{color:var(--mut);font-size:.78rem;margin-right:4px}
+  .w b{color:var(--red-d)}
+  .d{display:block;font-size:.83rem;color:#444;margin:2px 0 0 2.6em}
+  .note{background:var(--warn);border-left:4px solid var(--warn-b);border-radius:6px;padding:7px 9px;font-size:.82rem;margin-top:8px}
+  .tip{background:#eef6ff;border-left:4px solid #3b82f6;border-radius:6px;padding:7px 9px;font-size:.82rem;margin-top:8px}
+  .quote{font-weight:700;text-align:center;margin:4px 0 6px;color:var(--red-d)}
+  /* Mode quiz : on masque le sens, on garde la lettre */
+  body.quiz ul.items li{cursor:pointer}
+  body.quiz ul.items li:not(.shown) .w,body.quiz ul.items li:not(.shown) .d{filter:blur(6px);user-select:none}
+  body.quiz .card .note,body.quiz .card .tip{display:none}
+  body.quiz .card.revealed .note,body.quiz .card.revealed .tip{display:block}
+  .qhelp{display:none;font-size:.82rem;color:var(--mut);margin:8px 4px 0}
+  body.quiz .qhelp{display:block}
+  .cardbtn{display:none;margin-top:8px;font-size:.8rem;border:1px solid var(--line);background:#fafafa;border-radius:8px;padding:4px 9px;cursor:pointer}
+  body.quiz .cardbtn{display:inline-block}
+  .timeline{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:.82rem;margin:6px 4px 0}
+  .timeline span.s{background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 7px}
+  .timeline span.a{color:var(--mut)}
+  .hl{outline:3px solid var(--warn-b);outline-offset:2px}
+  footer{font-size:.78rem;color:var(--mut);padding:18px 16px 30px;max-width:900px;margin:0 auto}
+</style>
+</head>
+<body>
+<header>
+  <h1>🚒 Moyens mnémotechniques – sapeurs-pompiers</h1>
+  <p>Fiche de révision tirée du PDF Rescue18 (15 sigles). Mode <b>Quiz</b> : la lettre reste visible, touche une ligne pour révéler le sens.</p>
+</header>
+
+<nav class="bar" aria-label="Filtres et modes">
+  <button id="mode-revision" class="on">📖 Révision</button>
+  <button id="mode-quiz">🧠 Quiz</button>
+  <button id="btn-random">🎲 Sigle au hasard</button>
+  <span class="sep"></span>
+  <span id="filters"><button id="filtre-all" class="on" style="margin-right: 4px;">Tous</button><button id="filtre-secu" class="" style="margin-right: 4px;">🫁 Sécurité binôme / ARI</button><button id="filtre-feu" class="" style="margin-right: 4px;">🔥 Feu &amp; extinction</button><button id="filtre-cdt" class="" style="margin-right: 4px;">📋 Commandement</button><button id="filtre-part" class="" style="margin-right: 4px;">⚠️ Opérations particulières</button></span>
+</nav>
+
+<main>
+  <h2 class="theme" id="fil-rouge">Fil rouge : dans quel ordre ils servent en incendie</h2>
+  <div class="timeline" aria-label="Chronologie d'un engagement sous ARI">
+    <span class="s">RAPACE<br><small>avant d'entrer</small></span><span class="a">→</span>
+    <span class="s">TOOTEM<br><small>à chaque porte</small></span><span class="a">→</span>
+    <span class="s">FFCOS · COMIX<br><small>lire le feu</small></span><span class="a">→</span>
+    <span class="s">5D · PROCEDIS<br><small>éteindre</small></span><span class="a">→</span>
+    <span class="s">NELAR<br><small>si détresse</small></span><span class="a">→</span>
+    <span class="s">AAALEERTER<br><small>en attendant</small></span>
+  </div>
+  <p class="qhelp">Quiz : touche une ligne pour la révéler, ou « Tout révéler » sous la carte. Récite d'abord à voix haute !</p>
+  <div id="content"><h2 class="theme" id="theme-secu">🫁 Sécurité binôme / ARI</h2><div class="grid"><section class="card" id="carte-rapace" aria-label="Carte RAPACE"><h3>RAPACE</h3><p class="use">Dernière check-list du porteur avant l'engagement du binôme sous ARI.</p><ul class="items"><li><span class="k">R</span><span class="w"><b>Robinets (ouverture)</b></span></li><li><span class="k">A</span><span class="w"><b>Ajustement du harnais</b></span></li><li><span class="k">P</span><span class="w"><b>Pression</b></span></li><li><span class="k">A</span><span class="w"><b>Armement du système sonore</b></span></li><li><span class="k">C</span><span class="w"><b>Code de communication</b></span></li><li><span class="k">E</span><span class="w"><b>Étanchéité du masque</b></span></li></ul><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-tootem" aria-label="Carte TOOTEM"><h3>TOOTEM</h3><p class="use">Avant toute pénétration dans un volume, à intervalles réguliers et à chaque changement de local.</p><ul class="items"><li><span class="k">T</span><span class="w"><b>Toucher</b></span><span class="d">les portes et leurs poignées → estimer la chaleur radiante.</span></li><li><span class="k">O</span><span class="w"><b>Observer</b></span><span class="d">tous les signes d'alarme annonçant une explosion de fumées ou un embrasement généralisé éclair.</span></li><li><span class="k">O</span><span class="w"><b>Ouvrir</b></span><span class="d">le volume si les 2 actions précédentes l'autorisent, en se protégeant.</span></li><li><span class="k">T</span><span class="w"><b>Tester</b></span><span class="d">la
+ température des fumées au plafond (jet diffusé d'attaque). Gouttes qui 
+retombent = température conventionnelle, risque faible. Eau qui se 
+vaporise = risque MAXIMAL → refroidir la couche de fumées.</span></li><li><span class="k">EM</span><span class="w"><b>Engagement Minimal</b></span><span class="d">des personnels d'attaque dans les volumes concernés.</span></li></ul><div class="tip">💡 Progression par étapes de 1 à 2 m, avec un nouveau test du plafond à chaque étape.</div><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-nelar" aria-label="Carte NELAR"><h3>NELAR</h3><p class="use">Message de détresse radio du binôme, précédé de « URGENT, URGENT, URGENT ».</p><p class="quote">« URGENT, URGENT, URGENT »</p><ul class="items"><li><span class="k">N</span><span class="w"><b>Nom</b></span><span class="d">de celui qui passe le message</span></li><li><span class="k">E</span><span class="w"><b>Engin</b></span><span class="d">d'affectation</span></li><li><span class="k">L</span><span class="w"><b>Localisation</b></span></li><li><span class="k">A</span><span class="w"><b>Air restant</b></span><span class="d">(du binôme)</span></li><li><span class="k">R</span><span class="w"><b>Renfort</b></span><span class="d">nécessaire (qui, avec quoi) ou pas</span></li></ul><div class="tip">💡
+ Le COS répète le message à l'émetteur (prise en compte + baisse du 
+stress). La réception doit être confirmée (chef d'agrès, contrôleur…).</div><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-aaaleerter" aria-label="Carte AAALEERTER"><h3>AAALEERTER</h3><p class="use">Mode
+ survie du binôme en difficulté, après le message de détresse, en 
+attendant les secours : économiser l'air et être localisé vite.</p><ul class="items"><li><span class="k">A</span><span class="w"><b>Air</b></span><span class="d">contrôler pression restante et autonomie au manomètre.</span></li><li><span class="k">A</span><span class="w"><b>Alerte</b></span><span class="d">passer le message d'alerte avec NELAR.</span></li><li><span class="k">AL</span><span class="w"><b>ALarme</b></span><span class="d">balise sonore de l'ARI (touche SOS). Sans réponse radio : en plus, touche SOS du portatif Antares.</span></li><li><span class="k">E</span><span class="w"><b>Éclairer</b></span><span class="d">allumer son projecteur pour se signaler.</span></li><li><span class="k">E</span><span class="w"><b>Économiser l'air</b></span><span class="d">contrôler sa respiration.</span></li><li><span class="k">R</span><span class="w"><b>Rester près du sol</b></span><span class="d">position basse, au contact d'un mur (air frais, visibilité).</span></li><li><span class="k">T</span><span class="w"><b>Taper</b></span><span class="d">faire du bruit, outil sur surface métallique si possible.</span></li><li><span class="k">E</span><span class="w"><b>Explorer</b></span><span class="d">l'environnement immédiat : balayer le sol (tuyau), le mur (ouvrant).</span></li><li><span class="k">R</span><span class="w"><b>Remonter ma cagoule</b></span><span class="d">plus
+ d'air (ni chez l'équipier, ni prise auxiliaire possible) : retirer la 
+SAD, remonter la cagoule sur le masque pour « filtrer » la fumée, 
+respirer au ras du sol.</span></li></ul><div class="note">⚠️ Cagoule = DERNIER recours (risque d'intoxication par les fumées). Le binôme reste INDISSOCIABLE.</div><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-ag2r-spp-fr" aria-label="Carte AG2R SPP FR"><h3>AG2R SPP FR</h3><p class="use">Règles essentielles de sécurité collective en intervention.</p><ul class="items"><li><span class="k">A</span><span class="w"><b>Agir en concertation</b></span></li><li><span class="k">G</span><span class="w"><b>Garder le contact</b></span></li><li><span class="k">R</span><span class="w"><b>Respecter les consignes</b></span></li><li><span class="k">R</span><span class="w"><b>Réfléchir avant d'agir</b></span></li><li><span class="k">S</span><span class="w"><b>Surveiller l'environnement</b></span></li><li><span class="k">P</span><span class="w"><b>Prévenir du danger</b></span></li><li><span class="k">P</span><span class="w"><b>Penser au Repli</b></span></li><li><span class="k">F</span><span class="w"><b>Faire passer les messages</b></span></li><li><span class="k">R</span><span class="w"><b>Réaliser la mission et rendre compte</b></span></li></ul><div class="tip">💡 Lecture : A · G · 2 R · S · P · P · F · R.</div><button class="cardbtn">Tout révéler</button></section></div><h2 class="theme" id="theme-feu">🔥 Feu &amp; extinction</h2><div class="grid"><section class="card" id="carte-ffcos" aria-label="Carte FFCOS"><h3>FFCOS</h3><p class="use">Lecture du feu.</p><ul class="items"><li><span class="k">F</span><span class="w"><b>Fumée</b></span></li><li><span class="k">F</span><span class="w"><b>Flamme</b></span></li><li><span class="k">C</span><span class="w"><b>Chaleur</b></span></li><li><span class="k">O</span><span class="w"><b>Ouvertures</b></span></li><li><span class="k">S</span><span class="w"><b>Sons</b></span></li></ul><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-comix-comit" aria-label="Carte COMIX / COMIT"><h3>COMIX / COMIT</h3><p class="use">Risques liés aux fumées d'incendie.</p><ul class="items"><li><span class="k">C</span><span class="w"><b>Chaudes</b></span></li><li><span class="k">O</span><span class="w"><b>Opaques</b></span></li><li><span class="k">M</span><span class="w"><b>Mobiles</b></span></li><li><span class="k">I</span><span class="w"><b>Inflammables</b></span></li><li><span class="k">X</span><span class="w"><b>eXplosives</b></span><span class="d">(COMIX)</span></li><li><span class="k">T</span><span class="w"><b>Toxiques</b></span><span class="d">(COMIT)</span></li></ul><div class="tip">💡 Même début C-O-M-I ; seule la dernière lettre change : X = eXplosives, T = Toxiques.</div><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-procedis" aria-label="Carte PROCEDIS"><h3>PROCEDIS</h3><p class="use">Modes d'extinction du feu.</p><ul class="items"><li><span class="k">P</span><span class="w"><b>Part du feu</b></span></li><li><span class="k">R</span><span class="w"><b>Refroidissement</b></span></li><li><span class="k">O</span><span class="w"><b>Obstruction</b></span></li><li><span class="k">C</span><span class="w"><b>Coupure</b></span></li><li><span class="k">E</span><span class="w"><b>Étouffement</b></span></li><li><span class="k">D</span><span class="w"><b>Dispersion</b></span></li><li><span class="k">I</span><span class="w"><b>Inhibition</b></span></li><li><span class="k">S</span><span class="w"><b>Soufflage</b></span></li></ul><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-5d" aria-label="Carte 5D"><h3>5D</h3><p class="use">Paramètres de la lance à adapter pendant l'attaque : extinction efficace en limitant les dommages.</p><ul class="items"><li><span class="k">D</span><span class="w"><b>Diffusion du jet</b></span></li><li><span class="k">D</span><span class="w"><b>Débit</b></span></li><li><span class="k">D</span><span class="w"><b>Direction</b></span></li><li><span class="k">D</span><span class="w"><b>Durée</b></span></li><li><span class="k">D</span><span class="w"><b>Distance</b></span></li></ul><button class="cardbtn">Tout révéler</button></section></div><h2 class="theme" id="theme-cdt">📋 Commandement</h2><div class="grid"><section class="card" id="carte-soiec-m" aria-label="Carte SOIEC – M"><h3>SOIEC – M</h3><p class="use">Ordre initial complet.</p><ul class="items"><li><span class="k">S</span><span class="w"><b>Situation</b></span></li><li><span class="k">O</span><span class="w"><b>Objectif à atteindre</b></span></li><li><span class="k">I</span><span class="w"><b>Idée de manœuvre retenue</b></span></li><li><span class="k">E</span><span class="w"><b>Exécution par les équipes</b></span></li><li><span class="k">C</span><span class="w"><b>Commandement</b></span></li><li><span class="k">M</span><span class="w"><b>Mesures de sécurité afférentes</b></span></li></ul><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-smes" aria-label="Carte SMES"><h3>SMES</h3><p class="use">Cadre d'ordre du chef d'agrès pour un ordre initial simplifié (action immédiate ou évidente).</p><ul class="items"><li><span class="k">S</span><span class="w"><b>Situation</b></span><span class="d">rencontrée</span></li><li><span class="k">M</span><span class="w"><b>Mission</b></span><span class="d">précise pour chaque équipe et pour le conducteur</span></li><li><span class="k">E</span><span class="w"><b>Exécution</b></span><span class="d">modalités précises d'exécution de la mission</span></li><li><span class="k">S</span><span class="w"><b>Sécurité</b></span><span class="d">consignes générales et particulières</span></li></ul><div class="tip">💡 SMES = version courte de SOIEC-M, pour l'action immédiate.</div><button class="cardbtn">Tout révéler</button></section></div><h2 class="theme" id="theme-part">⚠️ Opérations particulières</h2><div class="grid"><section class="card" id="carte-se-curite" aria-label="Carte SÉCURITÉ"><h3>SÉCURITÉ</h3><p class="use">Ascenseur bloqué : la MGO appliquée aux ascenseurs.</p><ul class="items"><li><span class="k">S</span><span class="w"><b>Situation</b></span></li><li><span class="k">E</span><span class="w"><b>Énergie (ou Électricité)</b></span></li><li><span class="k">C</span><span class="w"><b>Contact avec les victimes</b></span></li><li><span class="k">U</span><span class="w"><b>Utilisation des radios</b></span></li><li><span class="k">R</span><span class="w"><b>Réalignement de la cabine sur un niveau</b></span></li><li><span class="k">I</span><span class="w"><b>Inviter les personnes à sortir</b></span></li><li><span class="k">T</span><span class="w"><b>Technicien</b></span></li><li><span class="k">E</span><span class="w"><b>Empêcher l'accès</b></span></li></ul><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-diapod" aria-label="Carte DIAPOD"><h3>DIAPOD</h3><p class="use">Risques chimiques (historique) : déclinaison de la MGO en risque chimique.</p><ul class="items"><li><span class="k">D</span><span class="w"><b>Délimiter</b></span></li><li><span class="k">I</span><span class="w"><b>Identifier</b></span></li><li><span class="k">A</span><span class="w"><b>Analyser</b></span></li><li><span class="k">P</span><span class="w"><b>Protéger</b></span></li><li><span class="k">O</span><span class="w"><b>Obturer</b></span></li><li><span class="k">D</span><span class="w"><b>Décontaminer</b></span></li></ul><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-magalisocotoracorrdiv" aria-label="Carte MAGALISOCOTORACORRDIV"><h3>MAGALISOCOTORACORRDIV</h3><p class="use">Déchiffrer vite un code danger TMD (chiffre → nature).</p><p class="quote">« Magalie, solide comme tes raccords »</p><ul class="items"><li><span class="n">1</span><span class="k">MA</span><span class="w"><b>MAtière</b></span></li><li><span class="n">2</span><span class="k">GA</span><span class="w"><b>GAz</b></span></li><li><span class="n">3</span><span class="k">LI</span><span class="w"><b>LIquide</b></span></li><li><span class="n">4</span><span class="k">SO</span><span class="w"><b>SOlide</b></span></li><li><span class="n">5</span><span class="k">CO</span><span class="w"><b>COmburant</b></span></li><li><span class="n">6</span><span class="k">TO</span><span class="w"><b>TOxique</b></span></li><li><span class="n">7</span><span class="k">RA</span><span class="w"><b>RAdioactif</b></span></li><li><span class="n">8</span><span class="k">CORR</span><span class="w"><b>CORrosif</b></span></li><li><span class="n">9</span><span class="k">DIV</span><span class="w"><b>DIVers</b></span></li></ul><div class="tip">💡 Le chiffre est la clé : apprends la phrase, puis compte les syllabes 1 → 9.</div><button class="cardbtn">Tout révéler</button></section><section class="card" id="carte-lase" aria-label="Carte LASE"><h3>LASE</h3><p class="use">Vérification des hydrants.</p><ul class="items"><li><span class="k">L</span><span class="w"><b>Localisation</b></span></li><li><span class="k">A</span><span class="w"><b>Accès</b></span></li><li><span class="k">S</span><span class="w"><b>Signalisation</b></span></li><li><span class="k">E</span><span class="w"><b>État général</b></span></li></ul><button class="cardbtn">Tout révéler</button></section></div></div>
+</main>
+
+<footer>
+  Source : « Les moyens mnémotechniques pour les sapeurs-pompiers », 
+Rescue18 (crédits : InfoPompiers / GDO-GTO / RO SDIS / PNRS). Liste non 
+exhaustive ; les GDO/GTO et le règlement opérationnel de ton SDIS 
+priment.
+</footer>
+
+<script>
+const THEMES = [
+  {id:"secu", label:"🫁 Sécurité binôme / ARI"},
+  {id:"feu", label:"🔥 Feu & extinction"},
+  {id:"cdt", label:"📋 Commandement"},
+  {id:"part", label:"⚠️ Opérations particulières"}
+];
+// items : [lettre(s) clé, mot (avec **gras** facultatif), détail facultatif, numéro facultatif]
+const DATA = [
+  {t:"secu", s:"RAPACE", use:"Dernière check-list du porteur avant l'engagement du binôme sous ARI.", items:[
+    ["R","Robinets (ouverture)"],["A","Ajustement du harnais"],["P","Pression"],
+    ["A","Armement du système sonore"],["C","Code de communication"],["E","Étanchéité du masque"]]},
+  {t:"secu", s:"TOOTEM", use:"Avant toute pénétration dans un volume, à intervalles réguliers et à chaque changement de local.", items:[
+    ["T","Toucher","les portes et leurs poignées → estimer la chaleur radiante."],
+    ["O","Observer","tous les signes d'alarme annonçant une explosion de fumées ou un embrasement généralisé éclair."],
+    ["O","Ouvrir","le volume si les 2 actions précédentes l'autorisent, en se protégeant."],
+    ["T","Tester","la température des fumées au plafond (jet diffusé d'attaque). Gouttes qui retombent = température conventionnelle, risque faible. Eau qui se vaporise = risque MAXIMAL → refroidir la couche de fumées."],
+    ["EM","Engagement Minimal","des personnels d'attaque dans les volumes concernés."]],
+    tip:"Progression par étapes de 1 à 2 m, avec un nouveau test du plafond à chaque étape."},
+  {t:"secu", s:"NELAR", use:"Message de détresse radio du binôme, précédé de « URGENT, URGENT, URGENT ».", quote:"« URGENT, URGENT, URGENT »", items:[
+    ["N","Nom","de celui qui passe le message"],["E","Engin","d'affectation"],["L","Localisation"],
+    ["A","Air restant","(du binôme)"],["R","Renfort","nécessaire (qui, avec quoi) ou pas"]],
+    tip:"Le COS répète le message à l'émetteur (prise en compte + baisse du stress). La réception doit être confirmée (chef d'agrès, contrôleur…)."},
+  {t:"secu", s:"AAALEERTER", use:"Mode survie du binôme en difficulté, après le message de détresse, en attendant les secours : économiser l'air et être localisé vite.", items:[
+    ["A","Air","contrôler pression restante et autonomie au manomètre."],
+    ["A","Alerte","passer le message d'alerte avec NELAR."],
+    ["AL","ALarme","balise sonore de l'ARI (touche SOS). Sans réponse radio : en plus, touche SOS du portatif Antares."],
+    ["E","Éclairer","allumer son projecteur pour se signaler."],
+    ["E","Économiser l'air","contrôler sa respiration."],
+    ["R","Rester près du sol","position basse, au contact d'un mur (air frais, visibilité)."],
+    ["T","Taper","faire du bruit, outil sur surface métallique si possible."],
+    ["E","Explorer","l'environnement immédiat : balayer le sol (tuyau), le mur (ouvrant)."],
+    ["R","Remonter ma cagoule","plus d'air (ni chez l'équipier, ni prise auxiliaire possible) : retirer la SAD, remonter la cagoule sur le masque pour « filtrer » la fumée, respirer au ras du sol."]],
+    note:"⚠️ Cagoule = DERNIER recours (risque d'intoxication par les fumées). Le binôme reste INDISSOCIABLE."},
+  {t:"secu", s:"AG2R SPP FR", use:"Règles essentielles de sécurité collective en intervention.", items:[
+    ["A","Agir en concertation"],["G","Garder le contact"],["R","Respecter les consignes"],
+    ["R","Réfléchir avant d'agir"],["S","Surveiller l'environnement"],["P","Prévenir du danger"],
+    ["P","Penser au Repli"],["F","Faire passer les messages"],["R","Réaliser la mission et rendre compte"]],
+    tip:"Lecture : A · G · 2 R · S · P · P · F · R."},
+
+  {t:"feu", s:"FFCOS", use:"Lecture du feu.", items:[
+    ["F","Fumée"],["F","Flamme"],["C","Chaleur"],["O","Ouvertures"],["S","Sons"]]},
+  {t:"feu", s:"COMIX / COMIT", use:"Risques liés aux fumées d'incendie.", items:[
+    ["C","Chaudes"],["O","Opaques"],["M","Mobiles"],["I","Inflammables"],
+    ["X","eXplosives","(COMIX)"],["T","Toxiques","(COMIT)"]],
+    tip:"Même début C-O-M-I ; seule la dernière lettre change : X = eXplosives, T = Toxiques."},
+  {t:"feu", s:"PROCEDIS", use:"Modes d'extinction du feu.", items:[
+    ["P","Part du feu"],["R","Refroidissement"],["O","Obstruction"],["C","Coupure"],
+    ["E","Étouffement"],["D","Dispersion"],["I","Inhibition"],["S","Soufflage"]]},
+  {t:"feu", s:"5D", use:"Paramètres de la lance à adapter pendant l'attaque : extinction efficace en limitant les dommages.", items:[
+    ["D","Diffusion du jet"],["D","Débit"],["D","Direction"],["D","Durée"],["D","Distance"]]},
+
+  {t:"cdt", s:"SOIEC – M", use:"Ordre initial complet.", items:[
+    ["S","Situation"],["O","Objectif à atteindre"],["I","Idée de manœuvre retenue"],
+    ["E","Exécution par les équipes"],["C","Commandement"],["M","Mesures de sécurité afférentes"]]},
+  {t:"cdt", s:"SMES", use:"Cadre d'ordre du chef d'agrès pour un ordre initial simplifié (action immédiate ou évidente).", items:[
+    ["S","Situation","rencontrée"],["M","Mission","précise pour chaque équipe et pour le conducteur"],
+    ["E","Exécution","modalités précises d'exécution de la mission"],["S","Sécurité","consignes générales et particulières"]],
+    tip:"SMES = version courte de SOIEC-M, pour l'action immédiate."},
+
+  {t:"part", s:"SÉCURITÉ", use:"Ascenseur bloqué : la MGO appliquée aux ascenseurs.", items:[
+    ["S","Situation"],["E","Énergie (ou Électricité)"],["C","Contact avec les victimes"],
+    ["U","Utilisation des radios"],["R","Réalignement de la cabine sur un niveau"],
+    ["I","Inviter les personnes à sortir"],["T","Technicien"],["E","Empêcher l'accès"]]},
+  {t:"part", s:"DIAPOD", use:"Risques chimiques (historique) : déclinaison de la MGO en risque chimique.", items:[
+    ["D","Délimiter"],["I","Identifier"],["A","Analyser"],["P","Protéger"],["O","Obturer"],["D","Décontaminer"]]},
+  {t:"part", s:"MAGALISOCOTORACORRDIV", use:"Déchiffrer vite un code danger TMD (chiffre → nature).", quote:"« Magalie, solide comme tes raccords »", items:[
+    ["MA","MAtière",null,1],["GA","GAz",null,2],["LI","LIquide",null,3],["SO","SOlide",null,4],
+    ["CO","COmburant",null,5],["TO","TOxique",null,6],["RA","RAdioactif",null,7],
+    ["CORR","CORrosif",null,8],["DIV","DIVers",null,9]],
+    tip:"Le chiffre est la clé : apprends la phrase, puis compte les syllabes 1 → 9."},
+  {t:"part", s:"LASE", use:"Vérification des hydrants.", items:[
+    ["L","Localisation"],["A","Accès"],["S","Signalisation"],["E","État général"]]}
+];
+
+let filter = "all";
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function render(){
+  const root = document.getElementById("content");
+  root.innerHTML = "";
+  THEMES.filter(th => filter==="all" || filter===th.id).forEach(th=>{
+    const h = document.createElement("h2"); h.className="theme"; h.id="theme-"+th.id; h.textContent=th.label;
+    root.appendChild(h);
+    const g = document.createElement("div"); g.className="grid"; root.appendChild(g);
+    DATA.filter(c=>c.t===th.id).forEach(c=>{
+      const id = "carte-"+c.s.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+      const el = document.createElement("section");
+      el.className="card"; el.id=id; el.setAttribute("aria-label","Carte "+c.s);
+      let html = `<h3>${esc(c.s)}</h3><p class="use">${esc(c.use)}</p>`;
+      if(c.quote) html += `<p class="quote">${esc(c.quote)}</p>`;
+      html += `<ul class="items">` + c.items.map(([k,w,d,n])=>
+        `<li>${n?`<span class="n">${n}</span>`:""}<span class="k">${esc(k)}</span><span class="w"><b>${esc(w)}</b></span>${d?`<span class="d">${esc(d)}</span>`:""}</li>`
+      ).join("") + `</ul>`;
+      if(c.note) html += `<div class="note">${esc(c.note)}</div>`;
+      if(c.tip) html += `<div class="tip">💡 ${esc(c.tip)}</div>`;
+      html += `<button class="cardbtn">Tout révéler</button>`;
+      el.innerHTML = html;
+      el.querySelectorAll("li").forEach(li=>li.addEventListener("click",()=>{
+        if(document.body.classList.contains("quiz")) li.classList.toggle("shown");
+      }));
+      el.querySelector(".cardbtn").addEventListener("click",()=>{
+        const all = el.classList.toggle("revealed");
+        el.querySelectorAll("li").forEach(li=>li.classList.toggle("shown",all));
+        el.querySelector(".cardbtn").textContent = all ? "Re-masquer" : "Tout révéler";
+      });
+      g.appendChild(el);
+    });
+  });
+}
+function buildFilters(){
+  const box = document.getElementById("filters");
+  [{id:"all",label:"Tous"},...THEMES].forEach(th=>{
+    const b = document.createElement("button");
+    b.textContent = th.label; b.id="filtre-"+th.id; b.className = th.id===filter?"on":"";
+    b.style.marginRight="4px";
+    b.onclick = ()=>{filter=th.id; box.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); render();};
+    box.appendChild(b);
+  });
+}
+function setMode(q){
+  document.body.classList.toggle("quiz",q);
+  document.getElementById("mode-quiz").classList.toggle("on",q);
+  document.getElementById("mode-revision").classList.toggle("on",!q);
+  render();
+}
+document.getElementById("mode-quiz").onclick=()=>setMode(true);
+document.getElementById("mode-revision").onclick=()=>setMode(false);
+document.getElementById("btn-random").onclick=()=>{
+  if(filter!=="all"){filter="all"; document.querySelectorAll("#filters button").forEach(x=>x.classList.toggle("on",x.id==="filtre-all")); render();}
+  const cards=[...document.querySelectorAll(".card")];
+  cards.forEach(c=>c.classList.remove("hl"));
+  const c=cards[Math.floor(Math.random()*cards.length)];
+  c.classList.add("hl"); c.scrollIntoView({behavior:"smooth",block:"center"});
+};
+buildFilters(); render();
+</script>
+
+
+</body></html>
